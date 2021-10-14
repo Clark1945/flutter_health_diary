@@ -18,12 +18,11 @@ class weight extends StatefulWidget {
   @override
   _weightState createState() => _weightState();
 }
-
 class _weightState extends State<weight> {
-
   final List<String> names = <String>[];  //預先加入的資料集
   //final List<int> msgCount = <int>[2, 10];  //預先加入的資料集
   TextEditingController nameController = TextEditingController();//擷取文字用
+
   late List<SalesData> _chartData;
   late TooltipBehavior _tooltipBehavior;
 
@@ -36,8 +35,12 @@ class _weightState extends State<weight> {
 
   void addItemToList(){
     setState(() {
+      var Date = DateTime.now();
+      int Datemon= Date.month;  //加入月份
+
       names.insert(0,nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
+      _chartData.insert(_chartData.length, SalesData(Datemon.toDouble(),double.parse(nameController.text))); //圖表更新
     });
   }
 
@@ -113,11 +116,9 @@ class _weightState extends State<weight> {
   }
   List<SalesData> getChartData(){
     final List<SalesData> chartData = [
-      SalesData(2017, 25),
-      SalesData(2018, 12),
-      SalesData(2019, 24),
-      SalesData(2020, 108),
-      SalesData(2021, 30),
+      SalesData(7, 25),
+      SalesData(8, 12),
+      SalesData(9, 24),
     ];
     return chartData;
   }
