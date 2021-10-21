@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.health1">
+<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
    <application
         android:label="health1"
         android:icon="@mipmap/ic_launcher">

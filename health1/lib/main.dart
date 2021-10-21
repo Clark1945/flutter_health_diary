@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import "dart:developer";
 
 import 'ex_time.dart';
@@ -10,7 +12,12 @@ import 'weigh.dart';
 import 'stepcount.dart';
 import 'sleeptime.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox<int>('steps');
+
   runApp(
       MaterialApp(
       home: preface(),

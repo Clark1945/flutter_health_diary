@@ -36,8 +36,19 @@ dependencies:
   cupertino_icons: ^1.0.2
   syncfusion_flutter_charts: ^18.4.49
   direct_select: ^2.0.0
+  pedometer:
+    git:
+      url: git://github.com/feelfreelinux/flutter-plugins.git
+      path: packages/pedometer
+  shared_preferences: ^0.5.7+3
+  google_fonts: ^1.1.0
+  jiffy: ^3.0.1
+  hive: ^1.4.1+1
+  hive_flutter: ^0.3.0+2
 
 dev_dependencies:
+  hive_generator: ^0.7.0+2
+  build_runner: ^1.10.0
   flutter_test:
     sdk: flutter
 
