@@ -12,18 +12,17 @@ String formatDate(DateTime d) {
 }
 
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  await Hive.openBox<int>('steps');
   runApp(stepcount());
 }
 class stepcount extends StatefulWidget {
+
 //  const stepcount({Key? key}) : super(key: key);
   @override
   _stepcountState createState() => _stepcountState();
 }
 
 class _stepcountState extends State<stepcount> {
+
 
   late Pedometer _pedometer;
   late StreamSubscription<int> _subscription;
@@ -33,6 +32,7 @@ class _stepcountState extends State<stepcount> {
 
   @override
   void initState() {
+
     super.initState();
     startListening();
   }
