@@ -212,25 +212,13 @@ class _karoryState extends State<karory> {
           InkWell(
             child: Container(
               margin: const EdgeInsets.all(5.0),
-              child: Text("蛙式",
+              child: Text("游泳",
                 style: TextStyle(
                   fontSize: 25,
                 ),
               ),
             ),
             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => breaststroke()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("自由式",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => freestyle()));},
           ),
           Divider(),
         ],

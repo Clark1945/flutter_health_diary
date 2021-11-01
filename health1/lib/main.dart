@@ -154,13 +154,7 @@ class MyApp extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(50, 5, 50,5),
                 ),
                 Container(
-                  child: ElevatedButton(child: Text('總運動時間'),
-                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => execrise()));},
-                    style: TextButton.styleFrom(primary: Colors.black,backgroundColor: Colors.grey),),
-                  margin: EdgeInsets.fromLTRB(50, 5, 50,5),
-                ),
-                Container(
-                  child: ElevatedButton(child: Text('卡路里消耗'),
+                  child: ElevatedButton(child: Text('運動時間及卡路里消耗'),
                     onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => karory()));},
                     style: TextButton.styleFrom(primary: Colors.black,backgroundColor: Colors.grey),),
                   margin: EdgeInsets.fromLTRB(50, 5, 50,5),
