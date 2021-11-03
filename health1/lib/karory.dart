@@ -23,7 +23,8 @@ class _karoryState extends State<karory> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: Text("選擇您的運動方式"),
       ),
@@ -223,6 +224,7 @@ class _karoryState extends State<karory> {
           Divider(),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    )
     );
   }
 }

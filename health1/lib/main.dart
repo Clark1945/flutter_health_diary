@@ -24,9 +24,14 @@ void main() async{
       )
   );
 }
-class  preface extends StatelessWidget {
-  const preface({Key? key}) : super(key: key);
+final name = TextEditingController();
+final sex = TextEditingController();
+final age = TextEditingController();
+final height = TextEditingController();
+final weighs = TextEditingController();
 
+class  preface extends StatelessWidget {
+  preface({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,6 +50,7 @@ class  preface extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             TextField(
+              controller: name,
               decoration: new InputDecoration(
                   icon: Icon(Icons.assignment_ind_outlined),
                   labelText: "姓名",
@@ -53,6 +59,7 @@ class  preface extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: sex,
               decoration: new InputDecoration(
                   icon: Icon(Icons.assignment_ind_outlined),
                   labelText: "性別",
@@ -61,6 +68,7 @@ class  preface extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: age,
               decoration: new InputDecoration(
                   icon: Icon(Icons.assignment_ind_outlined),
                   labelText: "年齡",
@@ -69,6 +77,7 @@ class  preface extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: height,
               decoration: new InputDecoration(
                   icon: Icon(Icons.assignment_ind_outlined),
                   labelText: "身高",
@@ -77,6 +86,7 @@ class  preface extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: weighs,
               decoration: new InputDecoration(
                   icon: Icon(Icons.assignment_ind_outlined),
                   labelText: "體重",
@@ -99,15 +109,64 @@ class MyApp extends StatelessWidget {
     debugPaintSizeEnabled = false;
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            //padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      "assets/UserIcon.png",
+                      width: 100,
+                      height: 100,
+                    ),
+                    Text(name.text),
+                  ],
+                ),
+
+              ),
+              ListTile(
+                title: Text('性別：${sex.text} '),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('年齡：${age.text} 歲'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('身高：${height.text} 公斤'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('體重：${weighs.text} 公斤'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: const Text('身體質量指數(BMI)：'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: new AppBar(
           title: Text("健康日誌"),
-          leading: Builder(
-              builder: (BuildContext context){
-                return IconButton(
-                  icon: const Icon(Icons.menu_sharp),
-                  onPressed: (){},
-                );
-              }),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.miscellaneous_services),
