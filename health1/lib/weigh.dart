@@ -17,8 +17,27 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [Locale('en', 'US')], //, Locale('pt', 'BR')],
-    );
+      supportedLocales: [  Locale.fromSubtags(languageCode: 'zh'), // generic Chinese 'zh'
+    Locale.fromSubtags(
+    languageCode: 'zh',
+    scriptCode: 'Hans'), // generic simplified Chinese 'zh_Hans'
+    Locale.fromSubtags(
+    languageCode: 'zh',
+    scriptCode: 'Hant'), // generic traditional Chinese 'zh_Hant'
+    Locale.fromSubtags(
+    languageCode: 'zh',
+    scriptCode: 'Hans',
+    countryCode: 'CN'), // 'zh_Hans_CN'
+    Locale.fromSubtags(
+    languageCode: 'zh',
+    scriptCode: 'Hant',
+    countryCode: 'TW'), // 'zh_Hant_TW'
+    Locale.fromSubtags(
+    languageCode: 'zh',
+    scriptCode: 'Hant',
+    countryCode: 'HK'), // 'zh_Hant_HK'], //, Locale('pt', 'BR')],
+    ]);
+
   }
 }
 class weight extends StatefulWidget {
@@ -30,14 +49,10 @@ class weight extends StatefulWidget {
 }
 class _weightState extends State<weight> {
   final List<String> names = <String>[];  //預先加入的資料集
-  //final List<int> msgCount = <int>[2, 10];  //預先加入的資料集
   TextEditingController nameController = TextEditingController();//擷取文字用
 
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   late TextEditingController _controller3;
-  String _valueChanged3 = '';
-  String _valueToValidate3 = '';
-  String _valueSaved3 = '';
 
   late List<weightData> _chartData;
   late TooltipBehavior _tooltipBehavior;
@@ -60,11 +75,9 @@ class _weightState extends State<weight> {
   void addItemToList(){
     setState(() {
       var Date = DateTime.now();
-      int Datemon= Date.month;  //加入月份
-
       names.insert(0,nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
-      _chartData.insert(_chartData.length, weightData(Datemon.toDouble(),double.parse(nameController.text))); //圖表更新
+      _chartData.insert(_chartData.length, weightData(DateTime.parse(_controller3.text),double.parse(nameController.text))); //圖表更新
     });
   }
 
@@ -84,7 +97,7 @@ class _weightState extends State<weight> {
                   children: <Widget>[
                     DateTimePicker(
                       type: DateTimePickerType.date,  //顯示格式
-                      dateMask: 'd MMM, yyyy',  //需求資料格式
+                      dateMask: 'Md',  //需求資料格式
                       controller: _controller3,  //
                       //initialValue: _initialValue,
                       firstDate: DateTime(2000), //範圍
@@ -116,44 +129,44 @@ class _weightState extends State<weight> {
                 addItemToList(); //呼叫方法
               },
             ),
-            Expanded(
-                child: ListView.builder(
-                    padding: const EdgeInsets.all(8),
-                    itemCount: names.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        height: 50,
-                        margin: EdgeInsets.all(2),
-                        color: Colors.blue,
-                        //                        msgCount[index]>=10? Colors.blue[400]:
+ //           Expanded(
+ //               child: ListView.builder(
+ //                   padding: const EdgeInsets.all(8),
+    //                   itemCount: names.length,
+    //                   itemBuilder: (BuildContext context, int index) {
+    //                     return Container(
+    //                       height: 50,
+    //                      margin: EdgeInsets.all(2),
+    //                     color: Colors.blue,
+    //                   //                        msgCount[index]>=10? Colors.blue[400]:
 //                        msgCount[index]>3? Colors.blue[100]: Colors.grey,
-                        child: Center(
-                            child: Text('${names[index]} ',
-                              style: TextStyle(fontSize: 18),
-                            )
-                        ),
-                      );
-                    }
-                )
-            ),
+    //                   child: Center(
+    //                      child: Text('${names[index]} ',
+    //                        style: TextStyle(fontSize: 18),
+    //                       )
+    //                   ),
+    //                 );
+    //               }   //顯示加入值時使用(廢棄)
+    //            )
+            //        ),
             SfCartesianChart(
               title: ChartTitle(text: "體重紀錄日誌",
               ),
               legend: Legend(isVisible: true), //顯示下面標籤
               tooltipBehavior: _tooltipBehavior,
               series: <ChartSeries>[
-                LineSeries<weightData,double>(
-                    name: 'Sales',  //改變標籤名稱
+                LineSeries<weightData,DateTime>(
+                    name: '體重',  //改變標籤名稱
                     dataSource: _chartData,
                     xValueMapper: (weightData sales, _) => sales.year,  //X軸的資料
-                    yValueMapper: (weightData sales, _) => sales.sales,  //Y軸的資料
-                    dataLabelSettings: DataLabelSettings(isVisible: true),
+                    yValueMapper: (weightData sales, _) => sales.kgwieght,  //Y軸的資料
+                    dataLabelSettings: DataLabelSettings(isVisible: false), //取消在圖表上顯示
                     enableTooltip: true  //final enable tooltip
                 )
               ],
-              primaryXAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
-              primaryYAxis: NumericAxis(
-                labelFormat: '{value}kg',
+              primaryXAxis: DateTimeAxis(), //設定X軸為DateTime格式
+              primaryYAxis: NumericAxis(   //設定Y軸為數字格式
+                labelFormat: '{value}公斤',
                 //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
               ),
             ),
@@ -163,16 +176,12 @@ class _weightState extends State<weight> {
   }
   List<weightData> getChartData(){
     final List<weightData> chartData = [
-      weightData(7, 25),
-      weightData(8, 12),
-      weightData(9, 24),
     ];
     return chartData;
   }
 }
-
 class weightData{
-  weightData(this.year,this.sales);
-  final double year;
-  final double sales;
+  weightData(this.year,this.kgwieght);
+  final DateTime year;
+  final double kgwieght;
 }
