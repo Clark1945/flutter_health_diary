@@ -190,7 +190,6 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                   onTap: (){
-                    print("Hey");
                   },
                   child: Container(
                    child: ElevatedButton(child: Text('體重'),

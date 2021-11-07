@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import "dart:developer";
 import 'package:direct_select/direct_select.dart';
 import "package:syncfusion_flutter_charts/charts.dart";
+import 'package:date_time_picker/date_time_picker.dart';
 
 void main() {
   runApp(
@@ -23,11 +26,16 @@ class _sleeptimeState extends State<sleeptime> {
   late List<SalesData> _chartData;
   late TooltipBehavior _tooltipBehavior;
 
+  late TextEditingController _controller3;
+  GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
+
   @override
   void initState(){
     _chartData = getChartData();
     _tooltipBehavior = TooltipBehavior(enable: true);
+
     super.initState();
+    _controller3 = TextEditingController(text: DateTime.now().toString());
   }
 
   final elements1 = [
@@ -44,7 +52,7 @@ class _sleeptimeState extends State<sleeptime> {
   ];
 
   int? selectedIndex1 = 0;
-  int? St = 0;
+  String St = "";
   List<Widget> _buildItems1() {
     return elements1
         .map((val) => MySelectionItem(
@@ -53,13 +61,13 @@ class _sleeptimeState extends State<sleeptime> {
         .toList();
   }
 
-  void addItemToList(){
+  void addItemToList(String str){
     setState(() {
       var Date = DateTime.now();
       int Datemon= Date.day;  //加入月份
       //names.insert(0,nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
-      _chartData.insert(_chartData.length, SalesData(Datemon.toDouble(),St!.toDouble())); //圖表更新
+      _chartData.insert(_chartData.length, SalesData(DateTime.parse(_controller3.text),double.parse(str.substring(0,1)))); //圖表更新
     });
   }
 
@@ -76,6 +84,28 @@ class _sleeptimeState extends State<sleeptime> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+                SingleChildScrollView(
+                  child: Form(
+                    key: _oFormKey,
+                    child: Column(
+                      children: <Widget>[
+                        DateTimePicker(
+                          type: DateTimePickerType.date,  //顯示格式
+                          dateMask: 'Md',  //需求資料格式
+                          controller: _controller3,  //
+                          //initialValue: _initialValue,
+                          firstDate: DateTime(2000), //範圍
+                          lastDate: DateTime(2100),   //範圍
+                          icon: Icon(Icons.event),
+                          dateLabelText: 'Date',
+                          //locale: Locale('pt', 'BR'),
+                          selectableDayPredicate: (date) {
+                            return true;
+                          },
+                        ),],
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: Text(
@@ -93,8 +123,8 @@ class _sleeptimeState extends State<sleeptime> {
                     onSelectedItemChanged: (index) {
                       setState(() {
                         selectedIndex1 = index;
-                        St = selectedIndex1;
-                        addItemToList();
+                        St = elements1[selectedIndex1!];
+                        addItemToList(St);
                       });
                     },
                     mode: DirectSelectMode.tap,
@@ -107,7 +137,7 @@ class _sleeptimeState extends State<sleeptime> {
                   legend: Legend(isVisible: false), //顯示下面標籤
                   tooltipBehavior: _tooltipBehavior,
                   series: <ChartSeries>[
-                    ColumnSeries<SalesData,double>(
+                    ColumnSeries<SalesData,DateTime>(
                         //name: '睡眠時間',  //改變標籤名稱
                         dataSource: _chartData,
                         xValueMapper: (SalesData sales, _) => sales.year,  //X軸的資料
@@ -116,7 +146,7 @@ class _sleeptimeState extends State<sleeptime> {
                         enableTooltip: true  //final enable tooltip
                     )
                   ],
-                  primaryXAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
+                  primaryXAxis: DateTimeAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
                   primaryYAxis: NumericAxis(
                     labelFormat: '{value}小時',
                     //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
@@ -131,10 +161,6 @@ class _sleeptimeState extends State<sleeptime> {
   }
   List<SalesData> getChartData(){
     final List<SalesData> chartData = [
-      SalesData(1, 8),
-      SalesData(2, 7),
-      SalesData(3, 9),
-      SalesData(31, 0),
     ];
     return chartData;
   }
@@ -144,7 +170,7 @@ class _sleeptimeState extends State<sleeptime> {
 
 class SalesData{
   SalesData(this.year,this.sales);
-  final double year;
+  final DateTime year;
   final double sales;
 }
 
