@@ -199,10 +199,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.monitor_weight,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  體重紀錄'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   體重',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   記錄每日體重的變化',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => weight()));
@@ -214,7 +225,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -229,10 +239,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.hotel,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  睡眠時間'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   睡眠',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   記錄每日睡眠的時間',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => sleeptime()));
@@ -244,7 +265,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -259,10 +279,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.directions_walk,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  步伐數量'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   步數',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   自動記錄每日走路步數',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => stepcount()));
@@ -274,7 +305,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -289,10 +319,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.directions_run,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  運動時間及卡路里消耗'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   運動',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   記錄運動時間及卡路里消耗',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => karory()));
@@ -304,7 +345,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -319,10 +359,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.fitness_center,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  肌力測試'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   肌力',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   測量肌肉力量',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => muscle()));
@@ -334,7 +385,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -349,10 +399,21 @@ class MyApp extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: Icon(
                   Icons.spa,
-                  // color: Colors.pink,
                   size: 24.0,
                 ),
-                label: Text('  健康分數評核'),
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '   健康分數',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Text(
+                      '   綜合健康參考分數',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => health_score()));
@@ -364,7 +425,6 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
