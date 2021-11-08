@@ -36,6 +36,8 @@ class preface extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
           title: Text("請先填入以下資料"),
           actions: [
             IconButton(
@@ -49,11 +51,13 @@ class preface extends StatelessWidget {
           ],
         ),
         body: ListView(
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           children: <Widget>[
             TextField(
               controller: name,
               decoration: new InputDecoration(
-                  icon: Icon(Icons.assignment_ind_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  icon: Icon(Icons.person),
                   labelText: "姓名",
                   suffix: Icon(Icons.close),
                   hintText: "請輸入您的姓名"),
@@ -61,7 +65,8 @@ class preface extends StatelessWidget {
             TextField(
               controller: sex,
               decoration: new InputDecoration(
-                  icon: Icon(Icons.assignment_ind_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  icon: Icon(Icons.female),
                   labelText: "性別",
                   suffix: Icon(Icons.close),
                   hintText: "請輸入您的性別"),
@@ -69,7 +74,8 @@ class preface extends StatelessWidget {
             TextField(
               controller: age,
               decoration: new InputDecoration(
-                  icon: Icon(Icons.assignment_ind_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  icon: Icon(Icons.forward_10),
                   labelText: "年齡",
                   suffix: Icon(Icons.close),
                   hintText: "請輸入您的年齡"),
@@ -77,7 +83,8 @@ class preface extends StatelessWidget {
             TextField(
               controller: height,
               decoration: new InputDecoration(
-                  icon: Icon(Icons.assignment_ind_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  icon: Icon(Icons.height),
                   labelText: "身高",
                   suffix: Icon(Icons.close),
                   hintText: "請輸入您的身高"),
@@ -85,7 +92,8 @@ class preface extends StatelessWidget {
             TextField(
               controller: weighs,
               decoration: new InputDecoration(
-                  icon: Icon(Icons.assignment_ind_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  icon: Icon(Icons.monitor_weight),
                   labelText: "體重",
                   suffix: Icon(Icons.close),
                   hintText: "請輸入您的體重"),
@@ -154,7 +162,7 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: const Text('身體質量指數(BMI)：'),
+                title: const Text('BMI：'),
                 onTap: () {
                   // Update the state of the app.
                   // ...
@@ -176,13 +184,15 @@ class MyApp extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.perm_identity),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => preface()));
+              },
               tooltip: "查看個人資訊(暫定)",
             ),
           ],
         ),
-        body: Center(
-            child: ListView(
+        body: ListView(
           shrinkWrap: true,
           children: <Widget>[
             Container(
@@ -213,7 +223,7 @@ class MyApp extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+              padding: EdgeInsets.fromLTRB(15, 25, 15, 5),
             ),
             Container(
               child: ElevatedButton.icon(
@@ -259,7 +269,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -289,7 +299,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -319,7 +329,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -349,7 +359,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -366,7 +376,7 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
             ),
           ],
-        )),
+        ),
       ),
     );
   }
