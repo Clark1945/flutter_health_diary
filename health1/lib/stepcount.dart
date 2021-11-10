@@ -1,5 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -29,6 +32,10 @@ class _stepcountState extends State<stepcount> {
   String _status = '?', _steps = '?';
   Box<int> stepsBox = Hive.box('steps');
   int todaySteps=0;
+  final stepcount_num = TextEditingController();
+  int percent_step = 0;
+  String ossas = "?";
+  String judge ="";
 
   @override
   void initState() {
@@ -72,6 +79,12 @@ class _stepcountState extends State<stepcount> {
   void _onDone() => print("Finished pedometer tracking");
   void _onError(error) => print("Flutter Pedometer Error: $error");
 
+  void stepcomplete() {
+    setState(() {
+      ossas = stepcount_num.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -83,8 +96,20 @@ class _stepcountState extends State<stepcount> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+          TextField(
+            controller: stepcount_num,
+          decoration: new InputDecoration(labelText: "輸入本日目標"),
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ], // Only numbers can be entered
+        ),
+              Divider(),
+              ElevatedButton(onPressed: () => stepcomplete(), child: Text("設立目標")
+              ),
+              Divider(),
               Text(
-                'Steps taken:',
+                '已完成步數',
                 style: TextStyle(fontSize: 30),
               ),
               Text(
@@ -94,31 +119,13 @@ class _stepcountState extends State<stepcount> {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              Divider(
-                height: 100,
-                thickness: 0,
-                color: Colors.white,
-              ),
               Text(
-                'Pedestrian status:',
+                "完成進度：""$todaySteps""/""$ossas",
                 style: TextStyle(fontSize: 30),
               ),
-              Icon(
-                _status == 'walking'
-                    ? Icons.directions_walk
-                    : _status == 'stopped'
-                    ? Icons.accessibility_new
-                    : Icons.error,
-                size: 100,
-              ),
-              Center(
-                child: Text(
-                  _status,
-                  style: _status == 'walking' || _status == 'stopped'
-                      ? TextStyle(fontSize: 30)
-                      : TextStyle(fontSize: 20, color: Colors.red),
-                ),
-              )
+              Divider(),
+              Text(judge,style: TextStyle(fontSize: 30)),
+
             ],
           ),
         ),
@@ -159,6 +166,9 @@ class _stepcountState extends State<stepcount> {
     stepsBox.put(todayDayNo, todaySteps);
     if (todaySteps.toString() == "Null") {
       todaySteps = 0;
+    }
+    if (todaySteps >= int.parse(ossas)){
+      judge = "恭喜達成目標！";
     }
     return todaySteps; // this is your daily steps value.
   }
