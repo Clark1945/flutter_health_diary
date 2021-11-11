@@ -90,6 +90,8 @@ class _stepcountState extends State<stepcount> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
           title: const Text('Pedometer example app'),
         ),
         body: Center(

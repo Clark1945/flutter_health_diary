@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,13 +20,14 @@ class _bicycleState extends State<bicycle> {
     super.initState();
   }
   getCount(){
+
     if (_start){
       _start = false;
     }
     else{
       _start = true;
-
     }
+
     Timer.periodic(Duration(seconds:1), (timer){
       if (_start){
         setState(() {
@@ -51,6 +51,8 @@ class _bicycleState extends State<bicycle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -127,6 +129,8 @@ class _walkState extends State<walk> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -202,6 +206,8 @@ class _golfState extends State<golf> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -278,6 +284,8 @@ class _bowlingState extends State<bowling> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -354,6 +362,8 @@ class _speed_walkingState extends State<speed_walking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -430,6 +440,8 @@ class _rowState extends State<row> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -505,6 +517,8 @@ class _danceState extends State<dance> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -581,6 +595,8 @@ class _badmintonState extends State<badminton> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -657,6 +673,8 @@ class _volleyballState extends State<volleyball> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -733,6 +751,8 @@ class _ping_pongState extends State<ping_pong> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -809,6 +829,8 @@ class _tennisState extends State<tennis> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -886,6 +908,8 @@ class _skateState extends State<skate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -963,6 +987,8 @@ class _ropeState extends State<rope> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -1040,6 +1066,8 @@ class _joggingState extends State<jogging> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -1115,6 +1143,8 @@ class _boxingState extends State<boxing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
@@ -1190,6 +1220,8 @@ class _breaststrokeState extends State<breaststroke> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(

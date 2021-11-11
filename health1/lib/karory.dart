@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
-import "dart:developer";
-
 import 'sub_karory.dart';
 
 void main() {
@@ -22,77 +20,87 @@ class _karoryState extends State<karory> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("選擇您的運動方式"),
       ),
       body: ListView(
         children: [
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("騎腳踏車",
-                style: TextStyle(
-                  fontSize: 25,
+          Row(
+            children: [
+              Expanded(
+                child:
+                  InkWell(
+                  child: Container(
+                    color: Colors.blue,
+                    margin: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                  alignment: Alignment.topCenter,
+                  child: Text("走路",
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
                 ),
-              ),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => walk()));},
+            )
             ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => bicycle()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("走路",
-                style: TextStyle(
-                  fontSize: 25,
+              Expanded(
+                child: InkWell(
+                child: Container(
+                  color: Colors.blue,
+                  alignment: Alignment.topCenter,
+                  margin: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                  child: Text("高爾夫",
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
                 ),
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => golf()));},
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => walk()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("高爾夫",
-                style: TextStyle(
-                  fontSize: 25,
+              ),
+              Expanded(child: InkWell(
+                child: Container(
+                  color: Colors.blue,
+                  margin: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                  alignment: Alignment.topCenter,
+                  child: Text("保齡球",
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => golf()));},
-          ),
-          Divider(),
-          InkWell(
+                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => bowling()));},
+              )
+              )
+            ]),
+        Row(children: [
+          Expanded(child: InkWell(
             child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("保齡球",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => bowling()));},
+              color: Colors.blue,
+              margin: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+            alignment: Alignment.topCenter,
+            child: Text("快走",
+            style: TextStyle(
+            fontSize: 25,
           ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("快走",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => speed_walking()));},
           ),
-          Divider(),
-          InkWell(
+          ),
+          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => speed_walking()));},
+          ),),
+          Expanded(child: InkWell(
             child: Container(
-              margin: const EdgeInsets.all(5.0),
+              color: Colors.blue,
+              margin: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+              alignment: Alignment.topCenter,
               child: Text("划船",
                 style: TextStyle(
                   fontSize: 25,
@@ -100,11 +108,13 @@ class _karoryState extends State<karory> {
               ),
             ),
             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => row()));},
-          ),
-          Divider(),
-          InkWell(
+          )),
+          Expanded(child:InkWell(
             child: Container(
-              margin: const EdgeInsets.all(5.0),
+              color: Colors.blue,
+              margin: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+              alignment: Alignment.topCenter,
               child: Text("跳舞",
                 style: TextStyle(
                   fontSize: 25,
@@ -112,116 +122,140 @@ class _karoryState extends State<karory> {
               ),
             ),
             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => dance()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("羽毛球",
-                style: TextStyle(
-                  fontSize: 25,
+          ))
+              ]),
+          Row(children: [
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("羽毛球",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => badminton()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("排球",
-                style: TextStyle(
-                  fontSize: 25,
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => badminton()));},
+            )),
+            Expanded(child:InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("排球",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => volleyball()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("乒乓球",
-                style: TextStyle(
-                  fontSize: 25,
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => volleyball()));},
+            )),
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("乒乓球",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ping_pong()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("網球",
-                style: TextStyle(
-                  fontSize: 25,
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ping_pong()));},
+            ))
+                  ],),
+          Row(children: [
+            Expanded(child:InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("網球",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => tennis()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("直排輪",
-                style: TextStyle(
-                  fontSize: 25,
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => tennis()));},
+            )),
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("直排輪",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => skate()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
-              child: Text("跳繩",
-                style: TextStyle(
-                  fontSize: 25,
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => skate()));},
+            ) ),
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+                alignment: Alignment.topCenter,
+                child: Text("跳繩",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
                 ),
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => rope()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => rope()));},
+            ))
+          ],),
+          Row(children: [
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+              alignment: Alignment.topCenter,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
               child: Text("慢跑",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
+              style: TextStyle(
+              fontSize: 25,
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => jogging()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
+              ),
+              ),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => jogging()));},
+              )),
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+                margin: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+              alignment: Alignment.topCenter,
               child: Text("拳擊",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
+              style: TextStyle(
+              fontSize: 25,
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => boxing()));},
-          ),
-          Divider(),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5.0),
+              ),
+              ),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => boxing()));},
+              )),
+            Expanded(child: InkWell(
+              child: Container(
+                color: Colors.blue,
+              margin: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.fromLTRB(0, 45, 0, 45),
+              alignment: Alignment.center,
               child: Text("游泳",
-                style: TextStyle(
-                  fontSize: 25,
-                ),
+              style: TextStyle(
+              fontSize: 25,
               ),
-            ),
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => breaststroke()));},
-          ),
-          Divider(),
+              ),
+              ),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => breaststroke()));},
+              )),
+          ],),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     )

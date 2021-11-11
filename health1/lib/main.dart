@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import "dart:developer";
-
-import 'ex_time.dart';
 import 'health_score.dart';
 import 'karory.dart';
 import 'muscle.dart';

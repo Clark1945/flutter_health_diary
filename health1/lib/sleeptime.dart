@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
-import "dart:developer";
 import 'package:direct_select/direct_select.dart';
 import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
@@ -25,9 +22,10 @@ class _sleeptimeState extends State<sleeptime> {
 
   late List<SalesData> _chartData;
   late TooltipBehavior _tooltipBehavior;
-
   late TextEditingController _controller3;
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
+  int? selectedIndex1 = 0;
+  String St = "";
 
   @override
   void initState(){
@@ -51,8 +49,7 @@ class _sleeptimeState extends State<sleeptime> {
     "10 小時以上",
   ];
 
-  int? selectedIndex1 = 0;
-  String St = "";
+
   List<Widget> _buildItems1() {
     return elements1
         .map((val) => MySelectionItem(
@@ -75,6 +72,8 @@ class _sleeptimeState extends State<sleeptime> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text("睡眠時間"),
       ),
       body: Padding(
@@ -152,7 +151,6 @@ class _sleeptimeState extends State<sleeptime> {
                     //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
                   ),
                 )
-
               ]
           ),
         ),
@@ -160,8 +158,7 @@ class _sleeptimeState extends State<sleeptime> {
     );
   }
   List<SalesData> getChartData(){
-    final List<SalesData> chartData = [
-    ];
+    final List<SalesData> chartData = [];
     return chartData;
   }
 }
@@ -177,7 +174,6 @@ class SalesData{
 class MySelectionItem extends StatelessWidget {
   final String? title;
   final bool isForList;
-
   const MySelectionItem({Key? key, this.title, this.isForList = true}) : super(key: key);
 
   @override
