@@ -74,8 +74,8 @@ class _weightState extends State<weight> {
     }); //並沒有實際功能
   }
   void addItemToList(){
-    var realdatetime = DateTime.parse(_controller3.text);
-    var realweight = double.parse(nameController.text);
+    DateTime realdatetime = DateTime.parse(_controller3.text);
+    double realweight = double.parse(nameController.text);
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     String select_day = dateFormat.format(realdatetime);
     //weight_box.clear();
@@ -90,7 +90,7 @@ class _weightState extends State<weight> {
             _chartData.length, weightData(select_day, realweight)); //圖表更新
       });
       weight_box.put(select_day, nameController.text);
-      Iterable GG = weight_box.keys;
+
     }
     //print(weight_box.values);
   }

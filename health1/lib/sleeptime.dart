@@ -66,7 +66,7 @@ class _sleeptimeState extends State<sleeptime> {
     var datetime = DateTime.parse(_controller3.text);
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     String select_day = dateFormat.format(datetime);
-
+    //sleeptime_box.clear();
     String sleeptime = str.substring(0, 1);
     if (sleeptime_box.containsKey(select_day)) {
 
@@ -81,7 +81,6 @@ class _sleeptimeState extends State<sleeptime> {
             SalesData(datetime, double.parse(sleeptime))); //圖表更新
       });
       sleeptime_box.put(select_day, sleeptime);
-      print(sleeptime_box);
     }
   }
 
