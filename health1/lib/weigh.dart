@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
+import 'package:hive/hive.dart';
 import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,6 +50,7 @@ class weight extends StatefulWidget {
 
 }
 class _weightState extends State<weight> {
+  Box<String> weight_box = Hive.box('alldata');
   final List<String> names = <String>[];  //預先加入的資料集
   TextEditingController nameController = TextEditingController();//擷取文字用
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
@@ -71,12 +74,25 @@ class _weightState extends State<weight> {
     }); //並沒有實際功能
   }
   void addItemToList(){
-    setState(() {
-      var Date = DateTime.now();
-      names.insert(0,nameController.text);
+    var realdatetime = DateTime.parse(_controller3.text);
+    var realweight = double.parse(nameController.text);
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    String select_day = dateFormat.format(realdatetime);
+    //weight_box.clear();
+    if (weight_box.keys.contains(select_day)){
+            print("錯誤");
+    }
+    else {
+      setState(() {
+        names.insert(0, nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
-      _chartData.insert(_chartData.length, weightData(DateTime.parse(_controller3.text),double.parse(nameController.text))); //圖表更新
-    });
+        _chartData.insert(
+            _chartData.length, weightData(select_day, realweight)); //圖表更新
+      });
+      weight_box.put(select_day, nameController.text);
+      Iterable GG = weight_box.keys;
+    }
+    //print(weight_box.values);
   }
 
 
@@ -134,7 +150,7 @@ class _weightState extends State<weight> {
               legend: Legend(isVisible: true), //顯示下面標籤
               tooltipBehavior: _tooltipBehavior,
               series: <ChartSeries>[
-                LineSeries<weightData,DateTime>(
+                LineSeries<weightData,String>(
                     name: '體重',  //改變標籤名稱
                     dataSource: _chartData,
                     xValueMapper: (weightData sales, _) => sales.year,  //X軸的資料
@@ -143,7 +159,7 @@ class _weightState extends State<weight> {
                     enableTooltip: true  //final enable tooltip
                 )
               ],
-              primaryXAxis: DateTimeAxis(), //設定X軸為DateTime格式
+              primaryXAxis: CategoryAxis(), //設定X軸為DateTime格式
               primaryYAxis: NumericAxis(   //設定Y軸為數字格式
                 labelFormat: '{value}公斤',
                 //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
@@ -160,6 +176,6 @@ class _weightState extends State<weight> {
 }
 class weightData{
   weightData(this.year,this.kgwieght);
-  final DateTime year;
+  final String year;
   final double kgwieght;
 }

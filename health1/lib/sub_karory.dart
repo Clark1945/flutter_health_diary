@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
+
+double total_consume = 0;
+Box<String> exe_karory = Hive.box('alldata');
 
 class bicycle extends StatefulWidget {
   const bicycle({Key? key}) : super(key: key);
@@ -45,6 +50,7 @@ class _bicycleState extends State<bicycle> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -123,6 +129,7 @@ class _walkState extends State<walk> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -200,6 +207,7 @@ class _golfState extends State<golf> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -278,6 +286,7 @@ class _bowlingState extends State<bowling> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -356,6 +365,7 @@ class _speed_walkingState extends State<speed_walking> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -434,6 +444,7 @@ class _rowState extends State<row> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -511,6 +522,7 @@ class _danceState extends State<dance> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -589,6 +601,7 @@ class _badmintonState extends State<badminton> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -667,6 +680,7 @@ class _volleyballState extends State<volleyball> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -745,6 +759,7 @@ class _ping_pongState extends State<ping_pong> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -823,6 +838,7 @@ class _tennisState extends State<tennis> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -902,6 +918,7 @@ class _skateState extends State<skate> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -981,6 +998,7 @@ class _ropeState extends State<rope> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -1060,6 +1078,7 @@ class _joggingState extends State<jogging> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -1137,6 +1156,7 @@ class _boxingState extends State<boxing> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -1214,6 +1234,7 @@ class _breaststrokeState extends State<breaststroke> {
         });
       }
     });
+    totl(consume);
   }
 
   @override
@@ -1246,4 +1267,20 @@ class _breaststrokeState extends State<breaststroke> {
       ),
     );
   }
+}
+class totalkarory{
+  double asd;
+  totalkarory(this.asd);
+}
+void totl(double value){
+  total_consume += value;
+  print(total_consume);
+}
+
+ gettotl(){
+   var datetime = DateTime.now();
+   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+   String select_day = dateFormat.format(datetime);
+  exe_karory.put(select_day, total_consume.toString());
+ return print(total_consume);
 }

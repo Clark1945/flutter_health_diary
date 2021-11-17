@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
+import 'package:health1/sub_karory.dart';
+import 'package:hive/hive.dart';
 import 'sub_karory.dart';
-
 void main() {
   runApp(
       MaterialApp(
@@ -18,6 +19,8 @@ class karory extends StatefulWidget {
 
 class _karoryState extends State<karory> {
 
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +28,7 @@ class _karoryState extends State<karory> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("選擇您的運動方式"),
+        title: Text("你選了"),
       ),
       body: ListView(
         children: [
@@ -255,6 +258,7 @@ class _karoryState extends State<karory> {
               ),
               onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => breaststroke()));},
               )),
+             // TextButton(onPressed: gettotl(), child: Text("HI")),
           ],),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -262,4 +266,5 @@ class _karoryState extends State<karory> {
     );
   }
 }
+
 

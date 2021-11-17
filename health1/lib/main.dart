@@ -13,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox<int>('steps');
+  await Hive.openBox<String>("alldata");
 
   runApp(MaterialApp(
     home: preface(),

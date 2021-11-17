@@ -39,7 +39,6 @@ class _stepcountState extends State<stepcount> {
 
   @override
   void initState() {
-
     super.initState();
     startListening();
   }
@@ -172,6 +171,7 @@ class _stepcountState extends State<stepcount> {
     if (todaySteps >= int.parse(ossas)){
       judge = "恭喜達成目標！";
     }
+    stepsBox.put(todayDayNo, todaySteps); 
     return todaySteps; // this is your daily steps value.
   }
 

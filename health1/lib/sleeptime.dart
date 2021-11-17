@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import 'package:direct_select/direct_select.dart';
+import 'package:hive/hive.dart';
 import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(
@@ -26,6 +28,8 @@ class _sleeptimeState extends State<sleeptime> {
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   int? selectedIndex1 = 0;
   String St = "";
+
+  Box<String> sleeptime_box = Hive.box('alldata');
 
   @override
   void initState(){
@@ -58,14 +62,27 @@ class _sleeptimeState extends State<sleeptime> {
         .toList();
   }
 
-  void addItemToList(String str){
-    setState(() {
-      var Date = DateTime.now();
-      int Datemon= Date.day;  //加入月份
-      //names.insert(0,nameController.text);
+  void addItemToList(String str) {
+    var datetime = DateTime.parse(_controller3.text);
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    String select_day = dateFormat.format(datetime);
+
+    String sleeptime = str.substring(0, 1);
+    if (sleeptime_box.containsKey(select_day)) {
+
+    }
+    else {
+      setState(() {
+        var Date = DateTime.now();
+        int Datemon = Date.day; //加入月份
+        //names.insert(0,nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
-      _chartData.insert(_chartData.length, SalesData(DateTime.parse(_controller3.text),double.parse(str.substring(0,1)))); //圖表更新
-    });
+        _chartData.insert(_chartData.length,
+            SalesData(datetime, double.parse(sleeptime))); //圖表更新
+      });
+      sleeptime_box.put(select_day, sleeptime);
+      print(sleeptime_box);
+    }
   }
 
   @override
