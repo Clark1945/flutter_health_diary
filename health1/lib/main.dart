@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'health_score.dart';
 import 'karory.dart';
 import 'muscle.dart';
@@ -17,20 +18,27 @@ void main() async {
 
   runApp(MaterialApp(
     home: preface(),
+
   ));
 }
+TextEditingController name = TextEditingController();
+TextEditingController sex = TextEditingController();
+TextEditingController age = TextEditingController();
+TextEditingController height = TextEditingController();
+TextEditingController weighs = TextEditingController();
 
-final name = TextEditingController();
-final sex = TextEditingController();
-final age = TextEditingController();
-final height = TextEditingController();
-final weighs = TextEditingController();
-
-class preface extends StatelessWidget {
-  preface({Key? key}) : super(key: key);
+class preface extends StatefulWidget {
+  const preface({Key? key}) : super(key: key);
 
   @override
+  _prefaceState createState() => _prefaceState();
+}
+
+class _prefaceState extends State<preface> {
+  @override
   Widget build(BuildContext context) {
+   // final counter = Provider.of<weight>(context); //應用底層
+
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(
@@ -41,8 +49,17 @@ class preface extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.send),
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
+                if (age.text == "" || name.text == "" || sex.text == "" || height.text == "" || weighs.text == ""){
+                  print("未輸入完全");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Msgbox()));
+                }
+                else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp()));
+                }
               },
               tooltip: "提交",
             ),
@@ -102,6 +119,24 @@ class preface extends StatelessWidget {
     );
   }
 }
+
+class Msgbox extends StatelessWidget {
+  const Msgbox({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('錯誤'),
+      content: const Text('資料未輸入完全'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'OK'),
+          child: const Text('OK'),
+        ),
+      ],
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

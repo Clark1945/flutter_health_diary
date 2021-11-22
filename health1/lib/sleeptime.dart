@@ -17,10 +17,10 @@ class sleeptime extends StatefulWidget {
   const sleeptime({Key? key}) : super(key: key);
 
   @override
-  _sleeptimeState createState() => _sleeptimeState();
+  sleeptimeState createState() => sleeptimeState();
 }
 
-class _sleeptimeState extends State<sleeptime> {
+class sleeptimeState extends State<sleeptime> {
 
   late List<SalesData> _chartData;
   late TooltipBehavior _tooltipBehavior;

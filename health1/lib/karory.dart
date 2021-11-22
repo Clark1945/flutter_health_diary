@@ -14,12 +14,10 @@ class karory extends StatefulWidget {
   const karory({Key? key}) : super(key: key);
 
   @override
-  _karoryState createState() => _karoryState();
+  karoryState createState() => karoryState();
 }
 
-class _karoryState extends State<karory> {
-
-
+class karoryState extends State<karory> {
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:health1/main.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,17 +40,14 @@ class MyApp extends StatelessWidget {
       scriptCode: 'Hant',
       countryCode: 'HK'), // 'zh_Hant_HK'], //, Locale('pt', 'BR')],
     ]);
-
   }
 }
-class weight extends StatefulWidget {
-  const weight({Key? key}) : super(key: key);
-
+class weight extends StatefulWidget {  //加入Provider
+  weight({Key? key}) : super(key: key);
   @override
-  _weightState createState() => _weightState();
-
+  weightState createState() => weightState();
 }
-class _weightState extends State<weight> {
+class weightState extends State<weight>{
   Box<String> weight_box = Hive.box('alldata');
   final List<String> names = <String>[];  //預先加入的資料集
   TextEditingController nameController = TextEditingController();//擷取文字用
@@ -90,9 +88,7 @@ class _weightState extends State<weight> {
             _chartData.length, weightData(select_day, realweight)); //圖表更新
       });
       weight_box.put(select_day, nameController.text);
-
     }
-    //print(weight_box.values);
   }
 
 
@@ -144,6 +140,17 @@ class _weightState extends State<weight> {
                 addItemToList(); //呼叫方法
               },
             ),
+            RaisedButton(
+              child: Text('刪除'),
+              onPressed: () {
+
+                setState(() {
+                  weight_box.clear();
+                  _chartData=[];
+                });
+                print(weight_box.keys);//呼叫方法
+              },
+            ),
             SfCartesianChart(
               title: ChartTitle(text: "體重紀錄日誌",
               ),
@@ -179,3 +186,4 @@ class weightData{
   final String year;
   final double kgwieght;
 }
+
