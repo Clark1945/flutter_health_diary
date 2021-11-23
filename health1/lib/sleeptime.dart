@@ -6,6 +6,8 @@ import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'main.dart';
+
 void main() {
   runApp(
       MaterialApp(
@@ -22,13 +24,12 @@ class sleeptime extends StatefulWidget {
 
 class sleeptimeState extends State<sleeptime> {
 
-  late List<SalesData> _chartData;
+  late List<Person> _chartData;
   late TooltipBehavior _tooltipBehavior;
   late TextEditingController _controller3;
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   int? selectedIndex1 = 0;
   String St = "";
-
   Box<String> sleeptime_box = Hive.box('alldata');
 
   @override
@@ -66,8 +67,9 @@ class sleeptimeState extends State<sleeptime> {
     var datetime = DateTime.parse(_controller3.text);
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     String select_day = dateFormat.format(datetime);
-    //sleeptime_box.clear();
+
     String sleeptime = str.substring(0, 1);
+    double realweight = double.parse(sleeptime);
     if (sleeptime_box.containsKey(select_day)) {
 
     }
@@ -78,7 +80,7 @@ class sleeptimeState extends State<sleeptime> {
         //names.insert(0,nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
         _chartData.insert(_chartData.length,
-            SalesData(datetime, double.parse(sleeptime))); //圖表更新
+            Person(select_day, realweight.toString())); //圖表更新
       });
       sleeptime_box.put(select_day, sleeptime);
     }
@@ -146,22 +148,31 @@ class sleeptimeState extends State<sleeptime> {
                     items: _buildItems1(),
 
                 ),
+                RaisedButton(
+                  child: Text('刪除'),
+                  onPressed: () {
+                    setState(() {
+                      sleeptime_box.clear();
+                      _chartData=[];
+                    });//呼叫方法
+                  },
+                ),
                 SfCartesianChart(
                   title: ChartTitle(text: "睡眠時間",
                   ),
                   legend: Legend(isVisible: false), //顯示下面標籤
                   tooltipBehavior: _tooltipBehavior,
                   series: <ChartSeries>[
-                    ColumnSeries<SalesData,DateTime>(
+                    ColumnSeries<Person,String>(
                         //name: '睡眠時間',  //改變標籤名稱
                         dataSource: _chartData,
-                        xValueMapper: (SalesData sales, _) => sales.year,  //X軸的資料
-                        yValueMapper: (SalesData sales, _) => sales.sales,  //Y軸的資料
+                        xValueMapper: (Person sales, _) => sales.years,  //X軸的資料
+                        yValueMapper: (Person sales, _) => double.parse(sales.kgwieghts),  //Y軸的資料
                         dataLabelSettings: DataLabelSettings(isVisible: false),
                         enableTooltip: true  //final enable tooltip
                     )
                   ],
-                  primaryXAxis: DateTimeAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
+                  primaryXAxis: CategoryAxis(),
                   primaryYAxis: NumericAxis(
                     labelFormat: '{value}小時',
                     //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
@@ -173,8 +184,11 @@ class sleeptimeState extends State<sleeptime> {
       ),
     );
   }
-  List<SalesData> getChartData(){
-    final List<SalesData> chartData = [];
+  List<Person> getChartData(){
+    final List<Person> chartData = [];
+    for (var key in sleeptime_box.keys) {
+      chartData.insert(0, Person(key,sleeptime_box.get(key).toString()));
+    }
     return chartData;
   }
 }

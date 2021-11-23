@@ -15,8 +15,6 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox<int>('steps');
   await Hive.openBox<String>("alldata");
-
-
   runApp(MaterialApp(
     home: preface(),
 
@@ -27,10 +25,11 @@ TextEditingController sex = TextEditingController();
 TextEditingController age = TextEditingController();
 TextEditingController height = TextEditingController();
 TextEditingController weighs = TextEditingController();
+double BMI = 0;
+String Status = "";
 
 class preface extends StatefulWidget {
   const preface({Key? key}) : super(key: key);
-
   @override
   _prefaceState createState() => _prefaceState();
 }
@@ -39,7 +38,6 @@ class _prefaceState extends State<preface> {
   @override
   Widget build(BuildContext context) {
    // final counter = Provider.of<weight>(context); //應用底層
-
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(
@@ -50,6 +48,8 @@ class _prefaceState extends State<preface> {
             IconButton(
               icon: const Icon(Icons.send),
               onPressed: () {
+                BMI = (double.parse(weighs.text))/((double.parse(height.text)/100)*(double.parse(height.text)/100));
+                if (BMI > 24){Status = "過重";}else if (BMI < 18.5){Status = "過輕";}else{Status = "正常";}
                 if (age.text == "" || name.text == "" || sex.text == "" || height.text == "" || weighs.text == ""){
                   print("未輸入完全");
                   Navigator.push(
@@ -149,7 +149,6 @@ class Msgbox extends StatelessWidget {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final devicesize = MediaQuery.of(context).size;
@@ -177,39 +176,30 @@ class MyApp extends StatelessWidget {
               ),
               ListTile(
                 title: Text('性別：${sex.text} '),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('年齡：${age.text} 歲'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('身高：${height.text} 公斤'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('體重：${weighs.text} 公斤'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('BMI：${BMI.toStringAsFixed(2)}'),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
                 },
               ),
               ListTile(
-                title: const Text('BMI：'),
+                title: Text('狀態顯示：${Status}'),
                 onTap: () {
-                  // Update the state of the app.
-                  // ...
                 },
-              ),
+              )
             ],
           ),
         ),
