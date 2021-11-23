@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import 'package:hive/hive.dart';
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
     ]);
   }
 }
-class weight extends StatefulWidget {  //加入Provider
+class weight extends StatefulWidget {
+  //加入Provider
   weight({Key? key}) : super(key: key);
   @override
   weightState createState() => weightState();
@@ -53,14 +56,16 @@ class weightState extends State<weight>{
   TextEditingController nameController = TextEditingController();//擷取文字用
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   late TextEditingController _controller3;
-  late List<weightData> _chartData;
+  late List<Person> _chartData;
   late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState(){
     super.initState();
     _controller3 = TextEditingController(text: DateTime.now().toString());
-    _chartData = getChartData();
+    setState(() {
+      _chartData = getChartData();
+    });
     _tooltipBehavior = TooltipBehavior(enable: true);
     _getValue();
 
@@ -85,9 +90,9 @@ class weightState extends State<weight>{
         names.insert(0, nameController.text);
 //      msgCount.insert(0, 0); //insert在0的位置加入0
         _chartData.insert(
-            _chartData.length, weightData(select_day, realweight)); //圖表更新
+            _chartData.length, Person(select_day, realweight.toString())); //圖表更新
       });
-      weight_box.put(select_day, nameController.text);
+      weight_box.put(select_day,realweight.toString());
     }
   }
 
@@ -157,11 +162,11 @@ class weightState extends State<weight>{
               legend: Legend(isVisible: true), //顯示下面標籤
               tooltipBehavior: _tooltipBehavior,
               series: <ChartSeries>[
-                LineSeries<weightData,String>(
+                LineSeries<Person,String>(
                     name: '體重',  //改變標籤名稱
                     dataSource: _chartData,
-                    xValueMapper: (weightData sales, _) => sales.year,  //X軸的資料
-                    yValueMapper: (weightData sales, _) => sales.kgwieght,  //Y軸的資料
+                    xValueMapper: (Person sales, _) => sales.years,  //X軸的資料
+                    yValueMapper: (Person sales, _) => double.parse(sales.kgwieghts),  //Y軸的資料
                     dataLabelSettings: DataLabelSettings(isVisible: false), //取消在圖表上顯示
                     enableTooltip: true  //final enable tooltip
                 )
@@ -176,14 +181,20 @@ class weightState extends State<weight>{
       )
     );
   }
-  List<weightData> getChartData(){
-    final List<weightData> chartData = [];
+  List<Person> getChartData(){
+    final List<Person> chartData = [];
+    for (var key in weight_box.keys) {
+        chartData.insert(0, Person(key,weight_box.get(key).toString()));
+    }
     return chartData;
   }
+
 }
 class weightData{
   weightData(this.year,this.kgwieght);
-  final String year;
+  final DateTime year;
   final double kgwieght;
 }
+
+
 

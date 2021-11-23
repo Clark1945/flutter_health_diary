@@ -16,6 +16,7 @@ void main() async {
   await Hive.openBox<int>('steps');
   await Hive.openBox<String>("alldata");
 
+
   runApp(MaterialApp(
     home: preface(),
 
@@ -118,6 +119,14 @@ class _prefaceState extends State<preface> {
       ),
     );
   }
+}
+@HiveType(typeId : 1)
+class Person {
+  Person(this.years,this.kgwieghts);
+  @HiveField(0)
+  late String years;
+  @HiveField(1)
+  late String kgwieghts;
 }
 
 class Msgbox extends StatelessWidget {
