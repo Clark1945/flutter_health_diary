@@ -17,9 +17,9 @@ void main() async {
   await Hive.openBox<String>("alldata");
   runApp(MaterialApp(
     home: preface(),
-
   ));
 }
+
 TextEditingController name = TextEditingController();
 TextEditingController sex = TextEditingController();
 TextEditingController age = TextEditingController();
@@ -37,10 +37,10 @@ class preface extends StatefulWidget {
 class _prefaceState extends State<preface> {
   @override
   Widget build(BuildContext context) {
-   // final counter = Provider.of<weight>(context); //應用底層
+    // final counter = Provider.of<weight>(context); //應用底層
     return MaterialApp(
       home: Scaffold(
-        appBar: new AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           title: Text("請先填入以下資料"),
@@ -48,17 +48,28 @@ class _prefaceState extends State<preface> {
             IconButton(
               icon: const Icon(Icons.send),
               onPressed: () {
-                BMI = (double.parse(weighs.text))/((double.parse(height.text)/100)*(double.parse(height.text)/100));
-                if (BMI > 24){Status = "過重";}else if (BMI < 18.5){Status = "過輕";}else{Status = "正常";}
-                if (age.text == "" || name.text == "" || sex.text == "" || height.text == "" || weighs.text == ""){
-                  print("未輸入完全");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Msgbox()));
-                }
-                else {
-                  Navigator.push(
-                      context,
+                if (age.text == "" ||
+                    name.text == "" ||
+                    sex.text == "" ||
+                    height.text == "" ||
+                    weighs.text == "") {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyApp()));
+                  // print("未輸入完全");
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Msgbox()));
+                } else {
+                  BMI = (double.parse(weighs.text)) /
+                      ((double.parse(height.text) / 100) *
+                          (double.parse(height.text) / 100));
+                  if (BMI > 24) {
+                    Status = "過重";
+                  } else if (BMI < 18.5) {
+                    Status = "過輕";
+                  } else {
+                    Status = "正常";
+                  }
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MyApp()));
                 }
               },
@@ -120,9 +131,10 @@ class _prefaceState extends State<preface> {
     );
   }
 }
-@HiveType(typeId : 1)
+
+@HiveType(typeId: 1)
 class Person {
-  Person(this.years,this.kgwieghts);
+  Person(this.years, this.kgwieghts);
   @HiveField(0)
   late String years;
   @HiveField(1)
@@ -145,7 +157,6 @@ class Msgbox extends StatelessWidget {
     );
   }
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -192,13 +203,11 @@ class MyApp extends StatelessWidget {
               ),
               ListTile(
                 title: Text('BMI：${BMI.toStringAsFixed(2)}'),
-                onTap: () {
-                },
+                onTap: () {},
               ),
               ListTile(
                 title: Text('狀態顯示：${Status}'),
-                onTap: () {
-                },
+                onTap: () {},
               )
             ],
           ),
