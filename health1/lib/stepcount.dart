@@ -86,7 +86,18 @@ class _stepcountState extends State<stepcount> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("步數"),
+        title: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 5),
+              child: Image.asset(
+                'assets/walk.png',
+                height: 25,
+              ),
+            ),
+            Container(padding: const EdgeInsets.all(8.0), child: Text('步數'))
+          ],
+        ),
       ),
       body: Center(
         child: Column(

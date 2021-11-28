@@ -106,7 +106,18 @@ class weightState extends State<weight> {
         appBar: new AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          title: Text("體重"),
+          title: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 5),
+                child: Image.asset(
+                  'assets/weight.png',
+                  height: 25,
+                ),
+              ),
+              Container(padding: const EdgeInsets.all(8.0), child: Text('體重'))
+            ],
+          ),
         ),
         body: ListView(
             // padding: EdgeInsets.all(10),
@@ -130,42 +141,75 @@ class weightState extends State<weight> {
                         style: TextStyle(fontSize: 18, color: Colors.black),
                       ),
                     ),
-                    SingleChildScrollView(
-                      padding: EdgeInsets.all(10),
-                      child: Form(
-                        key: _oFormKey,
-                        child: Column(
-                          children: <Widget>[
-                            DateTimePicker(
-                              type: DateTimePickerType.date, //顯示格式
-                              dateMask: 'Md', //需求資料格式
-                              controller: _controller3, //
-                              //initialValue: _initialValue,
-                              firstDate: DateTime(2000), //範圍
-                              lastDate: DateTime(2100), //範圍
-                              icon: Icon(Icons.event),
-                              dateLabelText: 'Date',
-                              //locale: Locale('pt', 'BR'),
-                              selectableDayPredicate: (date) {
-                                return true;
-                              },
+                    Container(
+                      // padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              '日期： ',
+                              style: TextStyle(fontSize: 16),
                             ),
-                          ],
-                        ),
+                          ),
+                          Flexible(
+                            child: SingleChildScrollView(
+                              padding: EdgeInsets.all(10),
+                              child: Form(
+                                key: _oFormKey,
+                                child: Column(
+                                  children: <Widget>[
+                                    DateTimePicker(
+                                      type: DateTimePickerType.date, //顯示格式
+                                      dateMask: 'Md', //需求資料格式
+                                      controller: _controller3, //
+                                      //initialValue: _initialValue,
+                                      firstDate: DateTime(2000), //範圍
+                                      lastDate: DateTime(2100), //範圍
+                                      // icon: Icon(Icons.event),
+                                      dateLabelText: 'Date',
+                                      //locale: Locale('pt', 'BR'),
+                                      selectableDayPredicate: (date) {
+                                        return true;
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      //用來設置Padding用的Widget
-                      padding: EdgeInsets.all(15),
-                      child: TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black26),
+                    Container(
+                      // padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              '體重：',
+                              style: TextStyle(fontSize: 16),
+                            ),
                           ),
-                          border: OutlineInputBorder(), //外框線
-                          labelText: '輸入您的體重', //Label
-                        ),
+                          Flexible(
+                            child: Padding(
+                              //用來設置Padding用的Widget
+                              padding: EdgeInsets.all(15),
+                              child: TextField(
+                                controller: nameController,
+                                decoration: InputDecoration(
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.black26),
+                                  ),
+                                  border: OutlineInputBorder(), //外框線
+                                  labelText: '輸入您的體重', //Label
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Row(

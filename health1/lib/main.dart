@@ -44,14 +44,30 @@ class _prefaceState extends State<preface> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          title: Text("個人資料"),
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person),
+          title: Row(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 10),
+                child: Image.asset(
+                  'assets/user.png',
+                  fit: BoxFit.contain,
+                  height: 28,
+                ),
+              ),
+              Container(padding: const EdgeInsets.all(8.0), child: Text('個人資料'))
+            ],
           ),
+          // leading: IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.person),
+          // ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.send),
+              icon: const Icon(
+                Icons.send,
+                color: Colors.blue,
+              ),
               onPressed: () {
                 if (age.text == "" ||
                     name.text == "" ||
@@ -78,7 +94,7 @@ class _prefaceState extends State<preface> {
                       MaterialPageRoute(builder: (context) => MyApp()));
                 }
               },
-              tooltip: "提交",
+              tooltip: "summit",
             ),
           ],
         ),
@@ -88,53 +104,139 @@ class _prefaceState extends State<preface> {
           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
               child: Column(
                 children: [
-                  TextField(
-                    controller: name,
-                    decoration: new InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        icon: Icon(Icons.person),
-                        labelText: "姓名",
-                        suffix: Icon(Icons.close),
-                        hintText: "請輸入您的姓名"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          child: Image.asset(
+                            'assets/user.png',
+                          ),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(10),
+                        ),
+                        Flexible(
+                          child: TextField(
+                            controller: name,
+                            decoration: new InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                // icon: Icon(Icons.person),
+                                labelText: "姓名",
+                                suffix: Icon(Icons.close),
+                                hintText: "請輸入您的姓名"),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextField(
-                    controller: sex,
-                    decoration: new InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        icon: Icon(Icons.female),
-                        labelText: "性別",
-                        suffix: Icon(Icons.close),
-                        hintText: "請輸入您的性別"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          child: Image.asset(
+                            'assets/gender.png',
+                          ),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(10),
+                        ),
+                        Flexible(
+                          child: TextField(
+                            controller: sex,
+                            decoration: new InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                labelText: "性別",
+                                suffix: Icon(Icons.close),
+                                hintText: "請輸入您的性別"),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextField(
-                    controller: age,
-                    decoration: new InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        icon: Icon(Icons.forward_10),
-                        labelText: "年齡",
-                        suffix: Icon(Icons.close),
-                        hintText: "請輸入您的年齡"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          child: Image.asset(
+                            'assets/age.png',
+                          ),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(10),
+                        ),
+                        Flexible(
+                          child: TextField(
+                            controller: age,
+                            decoration: new InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                labelText: "年齡",
+                                suffix: Icon(Icons.close),
+                                hintText: "請輸入您的年齡"),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextField(
-                    controller: height,
-                    decoration: new InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        icon: Icon(Icons.height),
-                        labelText: "身高",
-                        suffix: Icon(Icons.close),
-                        hintText: "請輸入您的身高"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          child: Image.asset(
+                            'assets/height.png',
+                          ),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(10),
+                        ),
+                        Flexible(
+                          child: TextField(
+                            controller: height,
+                            decoration: new InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                labelText: "身高",
+                                suffix: Icon(Icons.close),
+                                hintText: "請輸入您的身高"),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextField(
-                    controller: weighs,
-                    decoration: new InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        icon: Icon(Icons.monitor_weight),
-                        labelText: "體重",
-                        suffix: Icon(Icons.close),
-                        hintText: "請輸入您的體重"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          child: Image.asset(
+                            'assets/weight.png',
+                          ),
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(10),
+                        ),
+                        Flexible(
+                          child: TextField(
+                            controller: weighs,
+                            decoration: new InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                labelText: "體重",
+                                suffix: Icon(Icons.close),
+                                hintText: "請輸入您的體重"),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -191,7 +293,7 @@ class MyApp extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      "assets/UserIcon.png",
+                      "assets/user.png",
                       width: 100,
                       height: 100,
                     ),
@@ -228,7 +330,20 @@ class MyApp extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         appBar: new AppBar(
-          title: Text("健康日誌"),
+          title: Row(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 5),
+                child: Image.asset(
+                  'assets/logo.jpg',
+                  fit: BoxFit.contain,
+                  height: 35,
+                ),
+              ),
+              Container(padding: const EdgeInsets.all(8.0), child: Text('健康日誌'))
+            ],
+          ),
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           actions: <Widget>[
@@ -251,21 +366,29 @@ class MyApp extends StatelessWidget {
           shrinkWrap: true,
           children: <Widget>[
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.monitor_weight,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   體重',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/weight.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   記錄每日體重的變化',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   體重',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   記錄每日體重的變化',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -291,21 +414,29 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 25, 15, 5),
             ),
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.hotel,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   睡眠',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/sleep.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   記錄每日睡眠的時間',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   睡眠',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   記錄每日睡眠的時間',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -331,21 +462,29 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
             ),
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.directions_walk,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   步數',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/walk.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   自動記錄每日走路步數',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   步數',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   自動記錄每日走路步數',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -371,21 +510,29 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
             ),
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.directions_run,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   運動',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/sport.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   記錄運動時間及卡路里消耗',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   運動',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   記錄運動時間及卡路里消耗',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -411,21 +558,29 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
             ),
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.fitness_center,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   肌力',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/muscle.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   測量肌肉力量',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   肌力',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   測量肌肉力量',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -451,21 +606,29 @@ class MyApp extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
             ),
             Container(
-              child: ElevatedButton.icon(
-                icon: Icon(
-                  Icons.spa,
-                  size: 24.0,
-                ),
-                label: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '   健康分數',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      child: Image.asset(
+                        'assets/plant.png',
+                      ),
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(5),
                     ),
-                    Text(
-                      '   綜合健康參考分數',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '   健康',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        Text(
+                          '   綜合健康參考分數',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),

@@ -88,7 +88,18 @@ class sleeptimeState extends State<sleeptime> {
       appBar: new AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("睡眠"),
+        title: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 5),
+              child: Image.asset(
+                'assets/sleep.png',
+                height: 25,
+              ),
+            ),
+            Container(padding: const EdgeInsets.all(8.0), child: Text('睡眠'))
+          ],
+        ),
       ),
       body: ListView(children: <Widget>[
         Container(

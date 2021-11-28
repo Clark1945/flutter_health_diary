@@ -75,6 +75,17 @@ flutter:
   uses-material-design: true
   assets:
     - assets/UserIcon.png
+    - assets/age.png
+    - assets/gender.png
+    - assets/height.png
+    - assets/sport.png
+    - assets/sleep.png
+    - assets/user.png
+    - assets/walk.png
+    - assets/weight.png
+    - assets/logo.jpg
+    - assets/muscle.png
+    - assets/plant.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

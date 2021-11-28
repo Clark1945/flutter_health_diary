@@ -25,7 +25,18 @@ class karoryState extends State<karory> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("運動"),
+        title: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 5),
+              child: Image.asset(
+                'assets/sport.png',
+                height: 25,
+              ),
+            ),
+            Container(padding: const EdgeInsets.all(8.0), child: Text('運動'))
+          ],
+        ),
       ),
       body: ListView(
         children: [
