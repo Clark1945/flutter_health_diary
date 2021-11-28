@@ -39,11 +39,16 @@ class _prefaceState extends State<preface> {
   Widget build(BuildContext context) {
     // final counter = Provider.of<weight>(context); //應用底層
     return MaterialApp(
-      home: Scaffold(
+      // ignore: unnecessary_new
+      home: new Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          title: Text("請先填入以下資料"),
+          title: Text("個人資料"),
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.person),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.send),
@@ -78,52 +83,61 @@ class _prefaceState extends State<preface> {
           ],
         ),
         body: ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           children: <Widget>[
-            TextField(
-              controller: name,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  icon: Icon(Icons.person),
-                  labelText: "姓名",
-                  suffix: Icon(Icons.close),
-                  hintText: "請輸入您的姓名"),
-            ),
-            TextField(
-              controller: sex,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  icon: Icon(Icons.female),
-                  labelText: "性別",
-                  suffix: Icon(Icons.close),
-                  hintText: "請輸入您的性別"),
-            ),
-            TextField(
-              controller: age,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  icon: Icon(Icons.forward_10),
-                  labelText: "年齡",
-                  suffix: Icon(Icons.close),
-                  hintText: "請輸入您的年齡"),
-            ),
-            TextField(
-              controller: height,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  icon: Icon(Icons.height),
-                  labelText: "身高",
-                  suffix: Icon(Icons.close),
-                  hintText: "請輸入您的身高"),
-            ),
-            TextField(
-              controller: weighs,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  icon: Icon(Icons.monitor_weight),
-                  labelText: "體重",
-                  suffix: Icon(Icons.close),
-                  hintText: "請輸入您的體重"),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: name,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        icon: Icon(Icons.person),
+                        labelText: "姓名",
+                        suffix: Icon(Icons.close),
+                        hintText: "請輸入您的姓名"),
+                  ),
+                  TextField(
+                    controller: sex,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        icon: Icon(Icons.female),
+                        labelText: "性別",
+                        suffix: Icon(Icons.close),
+                        hintText: "請輸入您的性別"),
+                  ),
+                  TextField(
+                    controller: age,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        icon: Icon(Icons.forward_10),
+                        labelText: "年齡",
+                        suffix: Icon(Icons.close),
+                        hintText: "請輸入您的年齡"),
+                  ),
+                  TextField(
+                    controller: height,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        icon: Icon(Icons.height),
+                        labelText: "身高",
+                        suffix: Icon(Icons.close),
+                        hintText: "請輸入您的身高"),
+                  ),
+                  TextField(
+                    controller: weighs,
+                    decoration: new InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        icon: Icon(Icons.monitor_weight),
+                        labelText: "體重",
+                        suffix: Icon(Icons.close),
+                        hintText: "請輸入您的體重"),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -218,11 +232,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.miscellaneous_services),
-              onPressed: () {},
-              tooltip: "各項設定(暫定)",
-            ),
+            // IconButton(
+            //   icon: const Icon(Icons.miscellaneous_services),
+            //   onPressed: () {},
+            //   tooltip: "各項設定(暫定)",
+            // ),
             IconButton(
               icon: const Icon(Icons.perm_identity),
               onPressed: () {

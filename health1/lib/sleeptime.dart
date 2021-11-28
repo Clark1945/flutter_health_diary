@@ -9,12 +9,11 @@ import 'package:intl/intl.dart';
 import 'main.dart';
 
 void main() {
-  runApp(
-      MaterialApp(
-        home: sleeptime(),
-      )
-  );
+  runApp(MaterialApp(
+    home: sleeptime(),
+  ));
 }
+
 class sleeptime extends StatefulWidget {
   const sleeptime({Key? key}) : super(key: key);
 
@@ -23,7 +22,6 @@ class sleeptime extends StatefulWidget {
 }
 
 class sleeptimeState extends State<sleeptime> {
-
   late List<Person> _chartData;
   late TooltipBehavior _tooltipBehavior;
   late TextEditingController _controller3;
@@ -33,7 +31,7 @@ class sleeptimeState extends State<sleeptime> {
   Box<String> sleeptime_box = Hive.box('alldata');
 
   @override
-  void initState(){
+  void initState() {
     _chartData = getChartData();
     _tooltipBehavior = TooltipBehavior(enable: true);
 
@@ -54,12 +52,11 @@ class sleeptimeState extends State<sleeptime> {
     "10 小時以上",
   ];
 
-
   List<Widget> _buildItems1() {
     return elements1
         .map((val) => MySelectionItem(
-      title: val,
-    ))
+              title: val,
+            ))
         .toList();
   }
 
@@ -71,9 +68,7 @@ class sleeptimeState extends State<sleeptime> {
     String sleeptime = str.substring(0, 1);
     double realweight = double.parse(sleeptime);
     if (sleeptime_box.containsKey(select_day)) {
-
-    }
-    else {
+    } else {
       setState(() {
         var Date = DateTime.now();
         int Datemon = Date.day; //加入月份
@@ -89,114 +84,175 @@ class sleeptimeState extends State<sleeptime> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: new AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("睡眠時間"),
+        title: Text("睡眠"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Center(
+      body: ListView(children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black26,
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SingleChildScrollView(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  '新增睡眠時間',
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: SingleChildScrollView(
                   child: Form(
                     key: _oFormKey,
                     child: Column(
                       children: <Widget>[
                         DateTimePicker(
-                          type: DateTimePickerType.date,  //顯示格式
-                          dateMask: 'Md',  //需求資料格式
-                          controller: _controller3,  //
+                          type: DateTimePickerType.date, //顯示格式
+                          dateMask: 'Md', //需求資料格式
+                          controller: _controller3, //
                           //initialValue: _initialValue,
                           firstDate: DateTime(2000), //範圍
-                          lastDate: DateTime(2100),   //範圍
+                          lastDate: DateTime(2100), //範圍
                           icon: Icon(Icons.event),
                           dateLabelText: 'Date',
                           //locale: Locale('pt', 'BR'),
                           selectableDayPredicate: (date) {
                             return true;
                           },
-                        ),],
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "選擇您的睡眠時間",
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
-                  ),
-                ),
-                DirectSelect(
-                    itemExtent: 35.0,
-                    selectedIndex: selectedIndex1!,
-                    child: MySelectionItem(
-                      isForList: false,
-                      title: elements1[selectedIndex1!],
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        "睡眠時間：",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
-                    onSelectedItemChanged: (index) {
-                      setState(() {
-                        selectedIndex1 = index;
-                        St = elements1[selectedIndex1!];
-                        addItemToList(St);
-                      });
-                    },
-                    mode: DirectSelectMode.tap,
-                    items: _buildItems1(),
-
+                    DirectSelect(
+                      itemExtent: 70.0,
+                      selectedIndex: selectedIndex1!,
+                      child: Container(
+                        width: 150,
+                        child: MySelectionItem(
+                          isForList: false,
+                          title: elements1[selectedIndex1!],
+                        ),
+                      ),
+                      onSelectedItemChanged: (index) {
+                        setState(() {
+                          selectedIndex1 = index;
+                          St = elements1[selectedIndex1!];
+                          addItemToList(St);
+                        });
+                      },
+                      mode: DirectSelectMode.tap,
+                      items: _buildItems1(),
+                    ),
+                  ],
                 ),
-                RaisedButton(
-                  child: Text('刪除'),
+              ),
+              Container(
+                child: ElevatedButton.icon(
+                  icon: Icon(Icons.delete),
+                  label: Text(
+                    ' 刪除',
+                  ),
                   onPressed: () {
                     setState(() {
                       sleeptime_box.clear();
-                      _chartData=[];
-                    });//呼叫方法
+                      _chartData = [];
+                    });
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    foregroundColor: MaterialStateProperty.all(Colors.black),
+                    elevation: MaterialStateProperty.all(0),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.fromLTRB(20, 10, 20, 10)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(color: Colors.black26)),
+                    ),
+                    alignment: Alignment.centerLeft,
+                  ),
                 ),
-                SfCartesianChart(
-                  title: ChartTitle(text: "睡眠時間",
-                  ),
-                  legend: Legend(isVisible: false), //顯示下面標籤
-                  tooltipBehavior: _tooltipBehavior,
-                  series: <ChartSeries>[
-                    ColumnSeries<Person,String>(
-                        //name: '睡眠時間',  //改變標籤名稱
-                        dataSource: _chartData,
-                        xValueMapper: (Person sales, _) => sales.years,  //X軸的資料
-                        yValueMapper: (Person sales, _) => double.parse(sales.kgwieghts),  //Y軸的資料
-                        dataLabelSettings: DataLabelSettings(isVisible: false),
-                        enableTooltip: true  //final enable tooltip
-                    )
-                  ],
-                  primaryXAxis: CategoryAxis(),
-                  primaryYAxis: NumericAxis(
-                    labelFormat: '{value}小時',
-                    //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
-                  ),
-                )
-              ]
+                padding: EdgeInsets.fromLTRB(25, 10, 25, 5),
+              ),
+            ],
           ),
         ),
-      ),
+        Container(
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black26,
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: SfCartesianChart(
+            title: ChartTitle(
+              text: "睡眠時間",
+            ),
+            legend: Legend(isVisible: false), //顯示下面標籤
+            tooltipBehavior: _tooltipBehavior,
+            series: <ChartSeries>[
+              ColumnSeries<Person, String>(
+                  //name: '睡眠時間',  //改變標籤名稱
+                  dataSource: _chartData,
+                  xValueMapper: (Person sales, _) => sales.years, //X軸的資料
+                  yValueMapper: (Person sales, _) =>
+                      double.parse(sales.kgwieghts), //Y軸的資料
+                  dataLabelSettings: DataLabelSettings(isVisible: false),
+                  enableTooltip: true //final enable tooltip
+                  )
+            ],
+            primaryXAxis: CategoryAxis(),
+            primaryYAxis: NumericAxis(
+              labelFormat: '{value}小時',
+              //numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0) //$設定US為Default
+            ),
+          ),
+        ),
+      ]),
     );
   }
-  List<Person> getChartData(){
+
+  List<Person> getChartData() {
     final List<Person> chartData = [];
     for (var key in sleeptime_box.keys) {
-      chartData.insert(0, Person(key,sleeptime_box.get(key).toString()));
+      chartData.insert(0, Person(key, sleeptime_box.get(key).toString()));
     }
     return chartData;
   }
 }
 
-
-
-class SalesData{
-  SalesData(this.year,this.sales);
+class SalesData {
+  SalesData(this.year, this.sales);
   final DateTime year;
   final double sales;
 }
@@ -204,7 +260,8 @@ class SalesData{
 class MySelectionItem extends StatelessWidget {
   final String? title;
   final bool isForList;
-  const MySelectionItem({Key? key, this.title, this.isForList = true}) : super(key: key);
+  const MySelectionItem({Key? key, this.title, this.isForList = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -212,33 +269,33 @@ class MySelectionItem extends StatelessWidget {
       height: 60.0,
       child: isForList
           ? Padding(
-        child: _buildItem(context),
-        padding: EdgeInsets.all(10.0),
-      )
-          : Card(
-        margin: EdgeInsets.symmetric(horizontal: 10.0),
-        child: Stack(
-          children: <Widget>[
-            _buildItem(context),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Icon(Icons.arrow_drop_down),
+              child: _buildItem(context),
+              padding: EdgeInsets.all(10.0),
             )
-          ],
-        ),
-      ),
+          : Card(
+              margin: EdgeInsets.all(10),
+              child: Stack(
+                children: <Widget>[
+                  _buildItem(context),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(Icons.arrow_drop_down),
+                  )
+                ],
+              ),
+            ),
     );
   }
 
   Widget _buildItem(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width * 0.5,
       alignment: Alignment.center,
       child: FittedBox(
           child: Text(
-            title!,
-          )),
+        title!,
+        style: TextStyle(fontSize: 16),
+      )),
     );
   }
 }
-

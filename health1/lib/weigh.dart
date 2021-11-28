@@ -106,7 +106,7 @@ class weightState extends State<weight> {
         appBar: new AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          title: Text("體重紀錄"),
+          title: Text("體重"),
         ),
         body: ListView(
             // padding: EdgeInsets.all(10),

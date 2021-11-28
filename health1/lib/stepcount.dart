@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
 import 'package:flutter/services.dart';
@@ -14,36 +12,32 @@ String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
 }
 
-void main() async{
+void main() async {
   runApp(stepcount());
 }
-class stepcount extends StatefulWidget {
 
+class stepcount extends StatefulWidget {
 //  const stepcount({Key? key}) : super(key: key);
   @override
   _stepcountState createState() => _stepcountState();
 }
 
 class _stepcountState extends State<stepcount> {
-
-
   late Pedometer _pedometer;
   late StreamSubscription<int> _subscription;
   String _status = '?', _steps = '?';
   Box<int> stepsBox = Hive.box('steps');
-  int todaySteps=0;
+  int todaySteps = 0;
   final stepcount_num = TextEditingController();
   int percent_step = 0;
   String ossas = "?";
-  String judge ="";
+  String judge = "";
 
   @override
   void initState() {
     super.initState();
     startListening();
   }
-
-
 
   void onPedestrianStatusError(error) {
     print('onPedestrianStatusError: $error');
@@ -66,7 +60,8 @@ class _stepcountState extends State<stepcount> {
     });
   }
 
-  void startListening() { //獲取計步器數值
+  void startListening() {
+    //獲取計步器數值
     _pedometer = Pedometer();
     _subscription = _pedometer.pedometerStream.listen(
       getTodaySteps,
@@ -75,6 +70,7 @@ class _stepcountState extends State<stepcount> {
       cancelOnError: true,
     );
   }
+
   void _onDone() => print("Finished pedometer tracking");
   void _onError(error) => print("Flutter Pedometer Error: $error");
 
@@ -86,57 +82,56 @@ class _stepcountState extends State<stepcount> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          title: const Text('Pedometer example app'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-          TextField(
-            controller: stepcount_num,
-          decoration: new InputDecoration(labelText: "輸入本日目標"),
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ], // Only numbers can be entered
-        ),
-              Divider(),
-              ElevatedButton(onPressed: () => stepcomplete(), child: Text("設立目標")
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        title: Text("步數"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              controller: stepcount_num,
+              decoration: new InputDecoration(labelText: "輸入本日目標"),
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ], // Only numbers can be entered
+            ),
+            Divider(),
+            ElevatedButton(
+                onPressed: () => stepcomplete(), child: Text("設立目標")),
+            Divider(),
+            Text(
+              '已完成步數',
+              style: TextStyle(fontSize: 30),
+            ),
+            Text(
+              todaySteps.toString(),
+              style: GoogleFonts.darkerGrotesque(
+                fontSize: 80,
+                fontWeight: FontWeight.w900,
               ),
-              Divider(),
-              Text(
-                '已完成步數',
-                style: TextStyle(fontSize: 30),
-              ),
-              Text(
-                todaySteps.toString(),
-                style: GoogleFonts.darkerGrotesque(
-                  fontSize: 80,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              Text(
-                "完成進度：""$todaySteps""/""$ossas",
-                style: TextStyle(fontSize: 30),
-              ),
-              Divider(),
-              Text(judge,style: TextStyle(fontSize: 30)),
-
-            ],
-          ),
+            ),
+            Text(
+              "完成進度：" "$todaySteps" "/" "$ossas",
+              style: TextStyle(fontSize: 30),
+            ),
+            Divider(),
+            Text(judge, style: TextStyle(fontSize: 30)),
+          ],
         ),
       ),
     );
   }
+
   Future<int> getTodaySteps(int value) async {
-    print(value);  //步數
+    print(value); //步數
     int savedStepsCountKey = 999999;
-    int? savedStepsCount = stepsBox.get(savedStepsCountKey, defaultValue: 0);  //保存前幾天的步數
+    int? savedStepsCount =
+        stepsBox.get(savedStepsCountKey, defaultValue: 0); //保存前幾天的步數
 
     int todayDayNo = Jiffy(DateTime.now()).dayOfYear;
     if (value < savedStepsCount!) {
@@ -168,10 +163,10 @@ class _stepcountState extends State<stepcount> {
     if (todaySteps.toString() == "Null") {
       todaySteps = 0;
     }
-    if (todaySteps >= int.parse(ossas)){
+    if (todaySteps >= int.parse(ossas)) {
       judge = "恭喜達成目標！";
     }
-    stepsBox.put(todayDayNo, todaySteps); 
+    stepsBox.put(todayDayNo, todaySteps);
     return todaySteps; // this is your daily steps value.
   }
 
