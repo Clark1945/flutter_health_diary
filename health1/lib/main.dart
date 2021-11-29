@@ -41,6 +41,7 @@ class _prefaceState extends State<preface> {
     return MaterialApp(
       // ignore: unnecessary_new
       home: new Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,

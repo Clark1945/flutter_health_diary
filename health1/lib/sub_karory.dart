@@ -15,7 +15,6 @@ class bicycle extends StatefulWidget {
 }
 
 class _bicycleState extends State<bicycle> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -24,29 +23,27 @@ class _bicycleState extends State<bicycle> {
   void initState() {
     super.initState();
   }
-  getCount(){
 
-    if (_start){
+  getCount() {
+    if (_start) {
       _start = false;
-    }
-    else{
+    } else {
       _start = true;
     }
 
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 5 == 0){
+      if (_counter % 5 == 0) {
         setState(() {
-          consume = consume +  1.96 ;
+          consume = consume + 1.96;
         });
       }
     });
@@ -62,30 +59,46 @@ class _bicycleState extends State<bicycle> {
         title: Text("運動時間及卡路里消耗"),
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("腳踏車",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "腳踏車",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
+            ),
             Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
 
 class walk extends StatefulWidget {
   const walk({Key? key}) : super(key: key);
@@ -95,7 +108,6 @@ class walk extends StatefulWidget {
 }
 
 class _walkState extends State<walk> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -104,28 +116,26 @@ class _walkState extends State<walk> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(122.5大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.225 ;
+          consume = consume + 1.225;
         });
       }
     });
@@ -138,24 +148,52 @@ class _walkState extends State<walk> {
       appBar: new AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("運動時間及卡路里消耗"),
+        title: Text("走路"),
       ),
-      body: Center(
-        child: Column(
+      body: Container(
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.all(10),
+        // alignment: Alignment.centerLeft,
+        child: ListView(
           children: [
+            // Container(
+            //   child: Text(
+            //     "你選擇了",
+            //     style: TextStyle(
+            //       fontSize: 30,
+            //     ),
+            //   ),
+            //   margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
+            // ),
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
-              margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "運動項目：走路",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             Container(
-              child: Text("走路",style: TextStyle(fontSize: 70),),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
             Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
-            Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+            IconButton(
+              padding: EdgeInsets.all(10),
+              onPressed: getCount,
+              icon: Icon(
+                Icons.play_circle_fill,
+                color: Colors.blue,
+              ),
+              iconSize: 100,
             ),
           ],
         ),
@@ -163,7 +201,6 @@ class _walkState extends State<walk> {
     );
   }
 }
-
 
 class golf extends StatefulWidget {
   const golf({Key? key}) : super(key: key);
@@ -173,7 +210,6 @@ class golf extends StatefulWidget {
 }
 
 class _golfState extends State<golf> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -182,28 +218,26 @@ class _golfState extends State<golf> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，(129.5)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.295 ;
+          consume = consume + 1.295;
         });
       }
     });
@@ -222,27 +256,43 @@ class _golfState extends State<golf> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("高爾夫",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "高爾夫",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
+            ),
             Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
 
 class bowling extends StatefulWidget {
   const bowling({Key? key}) : super(key: key);
@@ -252,7 +302,6 @@ class bowling extends StatefulWidget {
 }
 
 class _bowlingState extends State<bowling> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -261,28 +310,26 @@ class _bowlingState extends State<bowling> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.295 ;
+          consume = consume + 1.295;
         });
       }
     });
@@ -301,27 +348,43 @@ class _bowlingState extends State<bowling> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("保齡球",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "保齡球",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
+            ),
             Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
             Container(
-              child: Text("消耗卡路里：$consume 卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "消耗卡路里：$consume 卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
 
 class speed_walking extends StatefulWidget {
   const speed_walking({Key? key}) : super(key: key);
@@ -331,7 +394,6 @@ class speed_walking extends StatefulWidget {
 }
 
 class _speed_walkingState extends State<speed_walking> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -340,28 +402,26 @@ class _speed_walkingState extends State<speed_walking> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.925 ;
+          consume = consume + 1.925;
         });
       }
     });
@@ -380,18 +440,36 @@ class _speed_walkingState extends State<speed_walking> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("快走",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "快走",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -399,8 +477,6 @@ class _speed_walkingState extends State<speed_walking> {
     );
   }
 }
-
-
 
 class row extends StatefulWidget {
   const row({Key? key}) : super(key: key);
@@ -410,7 +486,6 @@ class row extends StatefulWidget {
 }
 
 class _rowState extends State<row> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -419,28 +494,26 @@ class _rowState extends State<row> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.19 ;
+          consume = consume + 1.19;
         });
       }
     });
@@ -459,18 +532,36 @@ class _rowState extends State<row> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("划船",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "划船",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -478,7 +569,6 @@ class _rowState extends State<row> {
     );
   }
 }
-
 
 class dance extends StatefulWidget {
   const dance({Key? key}) : super(key: key);
@@ -488,7 +578,6 @@ class dance extends StatefulWidget {
 }
 
 class _danceState extends State<dance> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -497,28 +586,26 @@ class _danceState extends State<dance> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  2.38 ;
+          consume = consume + 2.38;
         });
       }
     });
@@ -537,18 +624,36 @@ class _danceState extends State<dance> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("跳舞",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "跳舞",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -556,8 +661,6 @@ class _danceState extends State<dance> {
     );
   }
 }
-
-
 
 class badminton extends StatefulWidget {
   const badminton({Key? key}) : super(key: key);
@@ -567,7 +670,6 @@ class badminton extends StatefulWidget {
 }
 
 class _badmintonState extends State<badminton> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -576,28 +678,26 @@ class _badmintonState extends State<badminton> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.788 ;
+          consume = consume + 1.788;
         });
       }
     });
@@ -616,18 +716,36 @@ class _badmintonState extends State<badminton> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("羽毛球",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "羽毛球",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -635,8 +753,6 @@ class _badmintonState extends State<badminton> {
     );
   }
 }
-
-
 
 class volleyball extends StatefulWidget {
   const volleyball({Key? key}) : super(key: key);
@@ -646,7 +762,6 @@ class volleyball extends StatefulWidget {
 }
 
 class _volleyballState extends State<volleyball> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -655,28 +770,26 @@ class _volleyballState extends State<volleyball> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.26 ;
+          consume = consume + 1.26;
         });
       }
     });
@@ -695,18 +808,36 @@ class _volleyballState extends State<volleyball> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("排球",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "排球",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -714,8 +845,6 @@ class _volleyballState extends State<volleyball> {
     );
   }
 }
-
-
 
 class ping_pong extends StatefulWidget {
   const ping_pong({Key? key}) : super(key: key);
@@ -725,7 +854,6 @@ class ping_pong extends StatefulWidget {
 }
 
 class _ping_pongState extends State<ping_pong> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -734,28 +862,26 @@ class _ping_pongState extends State<ping_pong> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.47 ;
+          consume = consume + 1.47;
         });
       }
     });
@@ -774,18 +900,36 @@ class _ping_pongState extends State<ping_pong> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("乒乓球",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "乒乓球",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -793,8 +937,6 @@ class _ping_pongState extends State<ping_pong> {
     );
   }
 }
-
-
 
 class tennis extends StatefulWidget {
   const tennis({Key? key}) : super(key: key);
@@ -804,7 +946,6 @@ class tennis extends StatefulWidget {
 }
 
 class _tennisState extends State<tennis> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -813,28 +954,26 @@ class _tennisState extends State<tennis> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 5 == 0){
+      if (_counter % 5 == 0) {
         setState(() {
-          consume = consume +  2.695 ;
+          consume = consume + 2.695;
         });
       }
     });
@@ -853,18 +992,36 @@ class _tennisState extends State<tennis> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("網球",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "網球",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -872,9 +1029,6 @@ class _tennisState extends State<tennis> {
     );
   }
 }
-
-
-
 
 class skate extends StatefulWidget {
   const skate({Key? key}) : super(key: key);
@@ -884,7 +1038,6 @@ class skate extends StatefulWidget {
 }
 
 class _skateState extends State<skate> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -893,28 +1046,26 @@ class _skateState extends State<skate> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  1.785 ;
+          consume = consume + 1.785;
         });
       }
     });
@@ -933,18 +1084,36 @@ class _skateState extends State<skate> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("直排輪",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "直排輪",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -952,9 +1121,6 @@ class _skateState extends State<skate> {
     );
   }
 }
-
-
-
 
 class rope extends StatefulWidget {
   const rope({Key? key}) : super(key: key);
@@ -964,7 +1130,6 @@ class rope extends StatefulWidget {
 }
 
 class _ropeState extends State<rope> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -973,28 +1138,26 @@ class _ropeState extends State<rope> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  2.94 ;
+          consume = consume + 2.94;
         });
       }
     });
@@ -1013,18 +1176,36 @@ class _ropeState extends State<rope> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("跳繩",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "跳繩",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -1032,9 +1213,6 @@ class _ropeState extends State<rope> {
     );
   }
 }
-
-
-
 
 class jogging extends StatefulWidget {
   const jogging({Key? key}) : super(key: key);
@@ -1044,7 +1222,6 @@ class jogging extends StatefulWidget {
 }
 
 class _joggingState extends State<jogging> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -1053,28 +1230,26 @@ class _joggingState extends State<jogging> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  2.87 ;
+          consume = consume + 2.87;
         });
       }
     });
@@ -1093,18 +1268,36 @@ class _joggingState extends State<jogging> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("慢跑",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "慢跑",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -1112,7 +1305,6 @@ class _joggingState extends State<jogging> {
     );
   }
 }
-
 
 class boxing extends StatefulWidget {
   const boxing({Key? key}) : super(key: key);
@@ -1122,7 +1314,6 @@ class boxing extends StatefulWidget {
 }
 
 class _boxingState extends State<boxing> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -1131,28 +1322,26 @@ class _boxingState extends State<boxing> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  3.99 ;
+          consume = consume + 3.99;
         });
       }
     });
@@ -1171,18 +1360,36 @@ class _boxingState extends State<boxing> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("拳擊",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "拳擊",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -1190,7 +1397,6 @@ class _boxingState extends State<boxing> {
     );
   }
 }
-
 
 class breaststroke extends StatefulWidget {
   const breaststroke({Key? key}) : super(key: key);
@@ -1200,7 +1406,6 @@ class breaststroke extends StatefulWidget {
 }
 
 class _breaststrokeState extends State<breaststroke> {
-
   int _counter = 0;
   bool _start = false;
   double consume = 0;
@@ -1209,28 +1414,26 @@ class _breaststrokeState extends State<breaststroke> {
   void initState() {
     super.initState();
   }
-  getCount(){
-    if (_start){
-      _start = false;
-    }
-    else{
-      _start = true;
 
+  getCount() {
+    if (_start) {
+      _start = false;
+    } else {
+      _start = true;
     }
-    Timer.periodic(Duration(seconds:1), (timer){
-      if (_start){
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (_start) {
         setState(() {
-          _counter ++;
+          _counter++;
         });
-      }
-      else{
+      } else {
         timer.cancel();
       }
 
       //以一名成年人70公斤，以20公里/小時的時速進行(294大卡)詳見 https://health.tainan.gov.tw/warehouse/%7B8961CCB1-809E-44E1-8602-AB6B4A9A2D87%7D/20160908142017_%E8%87%AA%E8%A1%8C%E8%BB%8A%E9%81%93%E7%86%B1%E9%87%8F%E6%A8%99%E7%A4%BA%E7%89%8C.pdf  /
-      if (_counter % 18 == 0){
+      if (_counter % 18 == 0) {
         setState(() {
-          consume = consume +  2.205 ;
+          consume = consume + 2.205;
         });
       }
     });
@@ -1249,18 +1452,36 @@ class _breaststrokeState extends State<breaststroke> {
         child: Column(
           children: [
             Container(
-              child: Text("你選擇了",style: TextStyle(fontSize: 30,),),
+              child: Text(
+                "你選擇了",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
               margin: const EdgeInsets.fromLTRB(30, 50, 30, 5),
             ),
             Container(
-              child: Text("游泳",style: TextStyle(fontSize: 70),),
+              child: Text(
+                "游泳",
+                style: TextStyle(fontSize: 70),
+              ),
             ),
-            IconButton(onPressed: getCount, icon: Icon(Icons.play_circle_fill),iconSize: 100,),
-            Container(
-              child: Text("經過時間：$_counter 秒", style: TextStyle(fontSize: 32),),
+            IconButton(
+              onPressed: getCount,
+              icon: Icon(Icons.play_circle_fill),
+              iconSize: 100,
             ),
             Container(
-              child: Text("消耗卡路里：$consume 大卡", style: TextStyle(fontSize: 32),),
+              child: Text(
+                "經過時間：$_counter 秒",
+                style: TextStyle(fontSize: 32),
+              ),
+            ),
+            Container(
+              child: Text(
+                "消耗卡路里：$consume 大卡",
+                style: TextStyle(fontSize: 32),
+              ),
             ),
           ],
         ),
@@ -1268,19 +1489,21 @@ class _breaststrokeState extends State<breaststroke> {
     );
   }
 }
-class totalkarory{
+
+class totalkarory {
   double asd;
   totalkarory(this.asd);
 }
-void totl(double value){
+
+void totl(double value) {
   total_consume += value;
   print(total_consume);
 }
 
- gettotl(){
-   var datetime = DateTime.now();
-   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
-   String select_day = dateFormat.format(datetime);
+gettotl() {
+  var datetime = DateTime.now();
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  String select_day = dateFormat.format(datetime);
   exe_karory.put(select_day, total_consume.toString());
- return print(total_consume);
+  return print(total_consume);
 }
