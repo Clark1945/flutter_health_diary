@@ -30,7 +30,7 @@ class _stepcountState extends State<stepcount> {
   int todaySteps = 0;
   final stepcount_num = TextEditingController();
   int percent_step = 0;
-  String ossas = "?";
+  String ossas = "10000";
   String judge = "";
 
   @override
@@ -99,41 +99,110 @@ class _stepcountState extends State<stepcount> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: stepcount_num,
-              decoration: new InputDecoration(labelText: "輸入本日目標"),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ], // Only numbers can be entered
-            ),
-            Divider(),
-            ElevatedButton(
-                onPressed: () => stepcomplete(), child: Text("設立目標")),
-            Divider(),
-            Text(
-              '已完成步數',
-              style: TextStyle(fontSize: 30),
-            ),
-            Text(
-              todaySteps.toString(),
-              style: GoogleFonts.darkerGrotesque(
-                fontSize: 80,
-                fontWeight: FontWeight.w900,
+      body: ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(15),
+            margin: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black26,
               ),
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            Text(
-              "完成進度：" "$todaySteps" "/" "$ossas",
-              style: TextStyle(fontSize: 30),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    '目標步數',
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: TextField(
+                    controller: stepcount_num,
+                    decoration: new InputDecoration(labelText: "請輸入目標步數"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: ElevatedButton.icon(
+                    icon: Icon(Icons.flag),
+                    label: Text("設立目標"),
+                    onPressed: () {
+                      stepcomplete();
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      foregroundColor: MaterialStateProperty.all(Colors.black),
+                      elevation: MaterialStateProperty.all(0),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.fromLTRB(20, 10, 20, 10)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            side: BorderSide(color: Colors.black26)),
+                      ),
+                      alignment: Alignment.centerLeft,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Divider(),
-            Text(judge, style: TextStyle(fontSize: 30)),
-          ],
-        ),
+          ),
+          Container(
+            padding: EdgeInsets.all(15),
+            margin: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black26,
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    '步數',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  // alignment: TextAlign.left,
+                  child: Text(
+                    '今日步數：${todaySteps.toString()} 步',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "完成進度：$todaySteps / $ossas",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                // Divider(),
+                // Text(judge, style: TextStyle(fontSize: 30)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

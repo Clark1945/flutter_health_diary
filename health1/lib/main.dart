@@ -50,7 +50,7 @@ class _prefaceState extends State<preface> {
               Container(
                 padding: EdgeInsets.only(right: 10),
                 child: Image.asset(
-                  'assets/user.png',
+                  'assets/logo.jpg',
                   fit: BoxFit.contain,
                   height: 28,
                 ),
@@ -573,7 +573,7 @@ class MyApp extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '   肌力',
+                          '   肌肉',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         Text(

@@ -148,7 +148,7 @@ class weightState extends State<weight> {
                         children: [
                           Container(
                             child: Text(
-                              '日期： ',
+                              '日期  ',
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
@@ -188,7 +188,7 @@ class weightState extends State<weight> {
                         children: [
                           Container(
                             child: Text(
-                              '體重：',
+                              '體重 ',
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
