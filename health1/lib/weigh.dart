@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
-import 'package:health1/sub_karory.dart';
 import 'package:hive/hive.dart';
 import "package:syncfusion_flutter_charts/charts.dart";
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:health1/main.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -85,7 +88,6 @@ class weightState extends State<weight> {
     double realweight = double.parse(nameController.text);
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     String select_day = dateFormat.format(realdatetime);
-    //weight_box.clear();
     if (weight_box.keys.contains(select_day)) {
       print("錯誤");
     } else {
@@ -96,7 +98,49 @@ class weightState extends State<weight> {
             Person(select_day, realweight.toString())); //圖表更新
       });
       weight_box.put(select_day, realweight.toString());
+      writeCounter({"\""+select_day+"\"":"\""+realweight.toString()+"\""});
     }
+  }
+  void deleteList(){
+    setState(() {
+      weight_box.clear();
+      _chartData = [];
+    });
+    deleteCounter({});
+    print(weight_box.keys);
+  }
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    //print(directory.path);
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/counter.txt');
+  }
+
+  Future<String> readCounter() async {
+    try {
+      final file = await _localFile;
+      // Read the file
+      final contents = await file.readAsString();
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0
+      return "Error";
+    }
+  }
+
+  Future<File> writeCounter(Map<String,String> wei_data) async {
+    final file = await _localFile;
+    return file.writeAsString(wei_data.toString()+",",mode: FileMode.append); //以Append形式寫入
+    // Write the file
+    return file.writeAsString(""); //以取代形式寫入(清空)
+  }
+  Future<File> deleteCounter(Map<String,String> wei_data) async {
+    final file = await _localFile;
+    return file.writeAsString(""); //以取代形式寫入(清空)
   }
 
   @override
@@ -250,11 +294,7 @@ class weightState extends State<weight> {
                               ' 刪除',
                             ),
                             onPressed: () {
-                              setState(() {
-                                weight_box.clear();
-                                _chartData = [];
-                              });
-                              print(weight_box.keys);
+                              deleteList();
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
