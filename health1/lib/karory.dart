@@ -11,7 +11,7 @@ void main() {
 }
 
 class karory extends StatefulWidget {
-  const karory({Key? key}) : super(key: key);
+  const karory({Key key}) : super(key: key);
 
   @override
   karoryState createState() => karoryState();

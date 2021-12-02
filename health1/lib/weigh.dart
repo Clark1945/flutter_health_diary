@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
 
 class weight extends StatefulWidget {
   //加入Provider
-  weight({Key? key}) : super(key: key);
+  weight({Key key}) : super(key: key);
   @override
   weightState createState() => weightState();
 }
@@ -61,9 +61,9 @@ class weightState extends State<weight> {
   final List<String> names = <String>[]; //預先加入的資料集
   TextEditingController nameController = TextEditingController(); //擷取文字用
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
-  late TextEditingController _controller3;
-  late List<Person> _chartData;
-  late TooltipBehavior _tooltipBehavior;
+  TextEditingController _controller3;
+  List<Person> _chartData;
+  TooltipBehavior _tooltipBehavior;
   // late
 
   @override

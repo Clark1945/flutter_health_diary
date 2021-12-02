@@ -15,18 +15,18 @@ void main() {
 }
 
 class sleeptime extends StatefulWidget {
-  const sleeptime({Key? key}) : super(key: key);
+  const sleeptime({Key key}) : super(key: key);
 
   @override
   sleeptimeState createState() => sleeptimeState();
 }
 
 class sleeptimeState extends State<sleeptime> {
-  late List<Person> _chartData;
-  late TooltipBehavior _tooltipBehavior;
-  late TextEditingController _controller3;
+  List<Person> _chartData;
+   TooltipBehavior _tooltipBehavior;
+   TextEditingController _controller3;
   GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
-  int? selectedIndex1 = 0;
+  int selectedIndex1 = 0;
   String St = "";
   Box<String> sleeptime_box = Hive.box('alldata');
 
@@ -163,18 +163,18 @@ class sleeptimeState extends State<sleeptime> {
                     ),
                     DirectSelect(
                       itemExtent: 70.0,
-                      selectedIndex: selectedIndex1!,
+                      selectedIndex: selectedIndex1,
                       child: Container(
                         width: 150,
                         child: MySelectionItem(
                           isForList: false,
-                          title: elements1[selectedIndex1!],
+                          title: elements1[selectedIndex1],
                         ),
                       ),
                       onSelectedItemChanged: (index) {
                         setState(() {
                           selectedIndex1 = index;
-                          St = elements1[selectedIndex1!];
+                          St = elements1[selectedIndex1];
                           addItemToList(St);
                         });
                       },
@@ -269,9 +269,9 @@ class SalesData {
 }
 
 class MySelectionItem extends StatelessWidget {
-  final String? title;
+  final String title;
   final bool isForList;
-  const MySelectionItem({Key? key, this.title, this.isForList = true})
+  const MySelectionItem({Key key, this.title, this.isForList = true})
       : super(key: key);
 
   @override
@@ -304,7 +304,7 @@ class MySelectionItem extends StatelessWidget {
       alignment: Alignment.center,
       child: FittedBox(
           child: Text(
-        title!,
+        title,
         style: TextStyle(fontSize: 16),
       )),
     );

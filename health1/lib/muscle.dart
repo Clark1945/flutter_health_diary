@@ -11,7 +11,7 @@ void main() {
 }
 
 class muscle extends StatefulWidget {
-  const muscle({Key? key}) : super(key: key);
+  const muscle({Key key}) : super(key: key);
 
   @override
   _muscleState createState() => _muscleState();

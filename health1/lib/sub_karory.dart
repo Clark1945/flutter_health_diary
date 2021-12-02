@@ -8,7 +8,7 @@ double total_consume = 0;
 Box<String> exe_karory = Hive.box('alldata');
 
 class bicycle extends StatefulWidget {
-  const bicycle({Key? key}) : super(key: key);
+  const bicycle({Key key}) : super(key: key);
 
   @override
   _bicycleState createState() => _bicycleState();
@@ -101,7 +101,7 @@ class _bicycleState extends State<bicycle> {
 }
 
 class walk extends StatefulWidget {
-  const walk({Key? key}) : super(key: key);
+  const walk({Key key}) : super(key: key);
 
   @override
   _walkState createState() => _walkState();
@@ -203,7 +203,7 @@ class _walkState extends State<walk> {
 }
 
 class golf extends StatefulWidget {
-  const golf({Key? key}) : super(key: key);
+  const golf({Key key}) : super(key: key);
 
   @override
   _golfState createState() => _golfState();
@@ -295,7 +295,7 @@ class _golfState extends State<golf> {
 }
 
 class bowling extends StatefulWidget {
-  const bowling({Key? key}) : super(key: key);
+  const bowling({Key key}) : super(key: key);
 
   @override
   _bowlingState createState() => _bowlingState();
@@ -387,7 +387,7 @@ class _bowlingState extends State<bowling> {
 }
 
 class speed_walking extends StatefulWidget {
-  const speed_walking({Key? key}) : super(key: key);
+  const speed_walking({Key key}) : super(key: key);
 
   @override
   _speed_walkingState createState() => _speed_walkingState();
@@ -479,7 +479,7 @@ class _speed_walkingState extends State<speed_walking> {
 }
 
 class row extends StatefulWidget {
-  const row({Key? key}) : super(key: key);
+  const row({Key key}) : super(key: key);
 
   @override
   _rowState createState() => _rowState();
@@ -571,7 +571,7 @@ class _rowState extends State<row> {
 }
 
 class dance extends StatefulWidget {
-  const dance({Key? key}) : super(key: key);
+  const dance({Key key}) : super(key: key);
 
   @override
   _danceState createState() => _danceState();
@@ -663,7 +663,7 @@ class _danceState extends State<dance> {
 }
 
 class badminton extends StatefulWidget {
-  const badminton({Key? key}) : super(key: key);
+  const badminton({Key key}) : super(key: key);
 
   @override
   _badmintonState createState() => _badmintonState();
@@ -755,7 +755,7 @@ class _badmintonState extends State<badminton> {
 }
 
 class volleyball extends StatefulWidget {
-  const volleyball({Key? key}) : super(key: key);
+  const volleyball({Key key}) : super(key: key);
 
   @override
   _volleyballState createState() => _volleyballState();
@@ -847,7 +847,7 @@ class _volleyballState extends State<volleyball> {
 }
 
 class ping_pong extends StatefulWidget {
-  const ping_pong({Key? key}) : super(key: key);
+  const ping_pong({Key key}) : super(key: key);
 
   @override
   _ping_pongState createState() => _ping_pongState();
@@ -939,7 +939,7 @@ class _ping_pongState extends State<ping_pong> {
 }
 
 class tennis extends StatefulWidget {
-  const tennis({Key? key}) : super(key: key);
+  const tennis({Key key}) : super(key: key);
 
   @override
   _tennisState createState() => _tennisState();
@@ -1031,7 +1031,7 @@ class _tennisState extends State<tennis> {
 }
 
 class skate extends StatefulWidget {
-  const skate({Key? key}) : super(key: key);
+  const skate({Key key}) : super(key: key);
 
   @override
   _skateState createState() => _skateState();
@@ -1123,7 +1123,7 @@ class _skateState extends State<skate> {
 }
 
 class rope extends StatefulWidget {
-  const rope({Key? key}) : super(key: key);
+  const rope({Key key}) : super(key: key);
 
   @override
   _ropeState createState() => _ropeState();
@@ -1215,7 +1215,7 @@ class _ropeState extends State<rope> {
 }
 
 class jogging extends StatefulWidget {
-  const jogging({Key? key}) : super(key: key);
+  const jogging({Key key}) : super(key: key);
 
   @override
   _joggingState createState() => _joggingState();
@@ -1307,7 +1307,7 @@ class _joggingState extends State<jogging> {
 }
 
 class boxing extends StatefulWidget {
-  const boxing({Key? key}) : super(key: key);
+  const boxing({Key key}) : super(key: key);
 
   @override
   _boxingState createState() => _boxingState();
@@ -1399,7 +1399,7 @@ class _boxingState extends State<boxing> {
 }
 
 class breaststroke extends StatefulWidget {
-  const breaststroke({Key? key}) : super(key: key);
+  const breaststroke({Key key}) : super(key: key);
 
   @override
   _breaststrokeState createState() => _breaststrokeState();

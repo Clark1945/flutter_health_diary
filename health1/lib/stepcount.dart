@@ -23,8 +23,8 @@ class stepcount extends StatefulWidget {
 }
 
 class _stepcountState extends State<stepcount> {
-  late Pedometer _pedometer;
-  late StreamSubscription<int> _subscription;
+  Pedometer _pedometer;
+  StreamSubscription<int> _subscription;
   String _status = '?', _steps = '?';
   Box<int> stepsBox = Hive.box('steps');
   int todaySteps = 0;
@@ -211,11 +211,11 @@ class _stepcountState extends State<stepcount> {
   Future<int> getTodaySteps(int value) async {
     print(value); //步數
     int savedStepsCountKey = 999999;
-    int? savedStepsCount =
+    int savedStepsCount =
         stepsBox.get(savedStepsCountKey, defaultValue: 0); //保存前幾天的步數
 
     int todayDayNo = Jiffy(DateTime.now()).dayOfYear;
-    if (value < savedStepsCount!) {
+    if (value < savedStepsCount) {
       // Upon device reboot, pedometer resets. When this happens, the saved counter must be reset as well.
       savedStepsCount = 0;
       // persist this value using a package of your choice here
@@ -224,11 +224,11 @@ class _stepcountState extends State<stepcount> {
 
     // load the last day saved using a package of your choice here
     int lastDaySavedKey = 888888;
-    int? lastDaySaved = stepsBox.get(lastDaySavedKey, defaultValue: 0);
+    int lastDaySaved = stepsBox.get(lastDaySavedKey, defaultValue: 0);
 
     // When the day changes, reset the daily steps count
     // and Update the last day saved as the day changes.
-    if (lastDaySaved! < todayDayNo) {
+    if (lastDaySaved < todayDayNo) {
       lastDaySaved = todayDayNo;
       savedStepsCount = value;
 
@@ -238,7 +238,7 @@ class _stepcountState extends State<stepcount> {
     }
 
     setState(() {
-      todaySteps = value - savedStepsCount!;
+      todaySteps = value - savedStepsCount;
     });
     stepsBox.put(todayDayNo, todaySteps);
     if (todaySteps.toString() == "Null") {

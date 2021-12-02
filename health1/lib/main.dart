@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:flutter/rendering.dart";
+import 'package:health1/muscle_strength_test/main.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ import 'weigh.dart';
 import 'stepcount.dart';
 import 'sleeptime.dart';
 
-void main() async {
+Future<void>  main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox<int>('steps');
@@ -29,7 +30,7 @@ double BMI = 0;
 String Status = "";
 
 class preface extends StatefulWidget {
-  const preface({Key? key}) : super(key: key);
+  const preface({Key key}) : super(key: key);
   @override
   _prefaceState createState() => _prefaceState();
 }
@@ -253,13 +254,13 @@ class _prefaceState extends State<preface> {
 class Person {
   Person(this.years, this.kgwieghts);
   @HiveField(0)
-  late String years;
+  String years;
   @HiveField(1)
-  late String kgwieghts;
+  String kgwieghts;
 }
 
 class Msgbox extends StatelessWidget {
-  const Msgbox({Key? key}) : super(key: key);
+  const Msgbox({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -276,7 +277,7 @@ class Msgbox extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final devicesize = MediaQuery.of(context).size;
@@ -587,7 +588,7 @@ class MyApp extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => muscle()));
+                      MaterialPageRoute(builder: (context) => Muscle_test()));
                 },
                 style: ButtonStyle(
                   backgroundColor:

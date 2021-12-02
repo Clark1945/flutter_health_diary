@@ -1,5 +1,5 @@
 name: health1
-description: A new Flutter project.
+description: A new Flutter project.Demonstrates how to use the sensors plugin.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -17,8 +17,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+#environment:
+#  sdk: ">=2.12.0 <3.0.0"
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+    sdk: ">=2.8.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -27,6 +29,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  sqflite: ^1.3.0
+  fl_chart: ^0.36.1
   flutter:
     sdk: flutter
   flutter_localizations: # Add this line
@@ -42,17 +46,31 @@ dependencies:
       url: git://github.com/feelfreelinux/flutter-plugins.git
       path: packages/pedometer
   shared_preferences: ^0.5.7+3
-  google_fonts: ^1.1.0
+  google_fonts: ^2.1.0
   jiffy: ^4.1.0
-  hive: ^1.4.1+1
-  hive_flutter: ^0.3.0+2
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
   date_time_picker: ^2.1.0
   provider: ^6.0.1
+  sensors:
+  charts_flutter: ^0.10.0
+  path: ^1.6.2
+  audioplayers: ^0.20.1
+  # firebase_core: ^1.10.0
+  # cloud_firestore: ^3.1.0
+  # just_audio: ^0.9.18
+
 
 
 dev_dependencies:
-  hive_generator: ^0.7.0+2
-  build_runner: ^1.10.0
+  flutter_driver:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  pedantic: ^1.10.0
+  hive_generator: ^1.1.1
+  build_runner: ^2.1.5
+  http_parser: ^4.0.0
   flutter_test:
     sdk: flutter
 
@@ -65,7 +83,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+flutter_icons:
+  image_path: 'assets/logo.png'
+  android: true
+  ios: true
 # The following section is specific to Flutter.
 flutter:
 
@@ -86,6 +107,15 @@ flutter:
     - assets/logo.jpg
     - assets/muscle.png
     - assets/plant.png
+    -  assets/angle.png
+    - assets/orientation.png
+    - assets/acceleration.png
+    - assets/gyroscope.png
+      # - assets/ding.mp3
+
+    # sdk:
+    # flutter: ">=1.20.0"
+      #    - assets/logo.png,
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

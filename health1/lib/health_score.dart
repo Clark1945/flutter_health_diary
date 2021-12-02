@@ -15,14 +15,14 @@ void main() {
 }
 
 class health_score extends StatefulWidget {
-  const health_score({Key? key}) : super(key: key);
+  const health_score({Key key}) : super(key: key);
   @override
   _health_scoreState createState() => _health_scoreState();
 }
 
 class _health_scoreState extends State<health_score> {
-  late String XY= "";
-  late String status = "";
+  String XY= "";
+  String status = "";
   Map valueMap= {};
 
   Future<String> get _localPath async {

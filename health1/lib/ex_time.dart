@@ -11,7 +11,7 @@ void main() {
 }
 
 class execrise extends StatefulWidget {
-  const execrise({Key? key}) : super(key: key);
+  const execrise({Key key}) : super(key: key);
 
   @override
   _execriseState createState() => _execriseState();
