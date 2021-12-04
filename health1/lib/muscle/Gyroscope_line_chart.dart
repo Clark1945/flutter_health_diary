@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'muscle.dart';
 import 'dart:async';
 import 'dart:math';
 
@@ -116,7 +116,7 @@ class Gyroscope_line_chartState extends State<Gyroscope_line_chart> {
         bottomTitles: SideTitles(
           showTitles: false,
           reservedSize: 22,
-          getTextStyles: (context,value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
@@ -138,7 +138,7 @@ class Gyroscope_line_chartState extends State<Gyroscope_line_chart> {
         ),
         leftTitles: SideTitles(
           showTitles: false,
-          getTextStyles: (context,value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,

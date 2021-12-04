@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ffi';
 // import 'dart:html';
 import 'dart:math';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
 import 'homepage_line_chart.dart';
@@ -11,7 +11,8 @@ import 'package:path/path.dart';
 // import 'DB.dart';
 // void main() => runApp(MaterialApp(home: new MyHomePage()));
 import 'CustomPage.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -89,8 +90,9 @@ class _HomePageState extends State<HomePage> {
     // final List<String> userAccelerometer = _userAccelerometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
     // final List<String> Orientation = _orientationValues?.map((double v) => v.toStringAsFixed(1)).toList();
 
-    btnClickEvent(CurrentOrientation) {
+    btnClickEvent(CurrentOrientation) async {
       if (b == 0) {
+        // warning();
         SportsCount = 0;
         OrientationList.clear();
         GyroscopeList.clear();
@@ -319,25 +321,40 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  AudioPlayer audioPlayer = AudioPlayer();
-  play() async {
-    int result = await audioPlayer
-        .play('https://taira-komori.jpn.org/sound_os/game01/select01.mp3');
-    if (result == 1) {
-      // success
-    }
+  // AudioPlayer audioPlayer = AudioPlayer();
+  // play() async {
+  //   int result = await audioPlayer
+  //       .play('https://taira-komori.jpn.org/sound_os/game01/select01.mp3');
+  //   if (result == 1) {
+  //     // success
+  //   }
+  // }
+
+  // AudioPlayer audioPlayer2 = AudioPlayer();
+  // play2() async {
+  //   int result = await audioPlayer2
+  //       .play('https://taira-komori.jpn.org/sound_os/game01/select08.mp3');
+  //   if (result == 1) {
+  //     // success
+  //   }
+  // }
+  final player_ding = AudioPlayer();
+  // var duration =player_ding.setAsset('assets/ding.mp3');
+  void ding() async {
+    await player_ding.setAsset('assets/ding.mp3');
+    player_ding.play();
   }
 
-  AudioPlayer audioPlayer2 = AudioPlayer();
-  play2() async {
-    int result = await audioPlayer2
-        .play('https://taira-komori.jpn.org/sound_os/game01/select08.mp3');
-    if (result == 1) {
-      // success
-    }
+  final player_warning = AudioPlayer();
+  void warning() async {
+    await player_warning.setAsset('assets/warning.mp3');
+    player_warning.play();
   }
+
+  var asdf = 1;
 
   void AutoStop() {
+    // setaudioplayer();
     setState(() {
       EndTime = DateTime.now().millisecondsSinceEpoch;
       DifferenceTime = ((EndTime - StartTime) / 1000).toStringAsFixed(2);
@@ -353,21 +370,26 @@ class _HomePageState extends State<HomePage> {
         if (_orientationValues[MeasurementModeValue] >= AngleCount &&
             CountLock == 1) {
           if (AudioSwtich == 1) {
-            play();
+            ding();
           }
           SportsCount++;
           CountLock = 0;
         } else if (_orientationValues[MeasurementModeValue] <= 10 &&
             CountLock == 0) {
           if (AudioSwtich == 1) {
-            play();
+            ding();
           }
           CountLock = 1;
         }
         if (WarningSound == 1 &&
             _orientationValues[MeasurementModeValue] <= -30 &&
             _orientationValues[MeasurementModeValue] >= -150) {
-          play2();
+          if (asdf == 1) {
+            warning();
+            asdf = 0;
+          }
+        } else {
+          asdf = 1;
         }
       }
 

@@ -14,7 +14,7 @@ var AudioSwtich = 1;
 var MeasurementModeValue = 1;
 var MeasurementModeName = ['', '肩屈肌三角肌試驗', '關節活動運動'];
 var MeasurementModeSelect = '肩屈肌三角肌試驗';
-var WarningSound = 0;
+var WarningSound = 1;
 
 class CustomPageState extends State<CustomPage> {
   @override

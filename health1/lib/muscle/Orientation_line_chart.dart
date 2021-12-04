@@ -1,40 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'muscle.dart';
 import 'dart:async';
 import 'dart:math';
 import 'HomePage.dart';
 
-class Accelerometer_line_chart extends StatefulWidget {
+class Orientation_line_chart extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => Accelerometer_line_chartState();
+  State<StatefulWidget> createState() => Orientation_line_chartState();
 }
 
-double max = -999;
-double min = 999;
-double maxY() {
-  for (var i = 0; i < AccelerometerList.length; i++) {
-    for (var y = 0; y <= 2; y++) {
-      if (double.parse(AccelerometerList[i][y]) > max) {
-        max = double.parse(AccelerometerList[i][y]);
-      }
-    }
-  }
-  return max * 1.1;
-}
-
-double minY() {
-  for (var i = 0; i < AccelerometerList.length; i++) {
-    for (var y = 0; y <= 2; y++) {
-      if (double.parse(AccelerometerList[i][y]) < min) {
-        min = double.parse(AccelerometerList[i][y]);
-      }
-    }
-  }
-  return min * 1.1;
-}
-
-class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
+class Orientation_line_chartState extends State<Orientation_line_chart> {
   @override
   void initState() {
     super.initState();
@@ -66,7 +42,7 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
                 //   height: 18,
                 // ),
                 // const Text(
-                //   '加速度計',
+                //   '方向儀',
                 //   style: TextStyle(
                 //       color: Colors.black,
                 //       fontSize: 20,
@@ -114,7 +90,7 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
         bottomTitles: SideTitles(
           showTitles: false,
           reservedSize: 22,
-          getTextStyles: (context,value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
@@ -124,31 +100,31 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
             if (value == 0) {
               return '0s';
             }
-            if (value == ((AccelerometerList.length - 1) / 2).toInt()) {
-              var s = ((AccelerometerList.length - 1) / 2).toInt();
+            if (value == ((OrientationList.length - 1) / 2).toInt()) {
+              var s = ((OrientationList.length - 1) / 2).toInt();
               return s.toString() + 's';
             }
-            if (value == AccelerometerList.length - 1) {
-              return (AccelerometerList.length - 1).toString() + 's';
+            if (value == OrientationList.length - 1) {
+              return (OrientationList.length - 1).toString() + 's';
             }
             return '';
           },
         ),
         leftTitles: SideTitles(
           showTitles: false,
-          getTextStyles: (context,value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
           getTitles: (value) {
             switch (value.toInt()) {
-              case -5:
-                return '-5';
+              case -90:
+                return '-90\u00B0';
               case 0:
-                return '0';
-              case 5:
-                return '5';
+                return '0\u00B0';
+              case 90:
+                return '90\u00B0';
             }
             return '';
           },
@@ -176,69 +152,29 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
         ),
       ),
       minX: 0,
-      maxX: AccelerometerList.length.toDouble() - 1,
-      maxY: maxY(),
-      minY: minY(),
+      maxX: OrientationList.length.toDouble() - 1,
+      maxY: 180,
+      minY: -180,
       lineBarsData: linesBarData(),
     );
   }
-  // double max = 0;
-  // double min = 999;
-
-  // getGyroscope() {
-  //   for (var i = 0; i < AccelerometerList.length; i++) {
-  //     for (var y = 0; i <= 2; i++) {
-  //       if (double.parse(AccelerometerList[i][y]) > max) {
-  //         max = double.parse(AccelerometerList[i][y]);
-  //       }
-  //       if (double.parse(AccelerometerList[i][y]) < min) {
-  //         min = double.parse(AccelerometerList[i][y]);
-  //       }
-  //     }
-  //   }
-  //   // if (double.parse(AccelerometerList[i][0]) > max) {
-  //   //   max = double.parse(AccelerometerList[i][0]);
-  //   // }
-  //   // if (double.parse(AccelerometerList[i][1]) > max) {
-  //   //   max = double.parse(AccelerometerList[i][1]);
-  //   // }
-  //   // if (double.parse(AccelerometerList[i][2]) > max) {
-  //   //   max = double.parse(AccelerometerList[i][2]);
-  //   // }
-  //   // return max;
-  // }
-
-  // getMinGyroscopeList() {
-  //   for (var i = 0; i < AccelerometerList.length; i++) {
-  //     if (double.parse(AccelerometerList[i][0]) < min) {
-  //       min = double.parse(AccelerometerList[i][0]);
-  //     }
-  //     if (double.parse(AccelerometerList[i][1]) < min) {
-  //       min = double.parse(AccelerometerList[i][1]);
-  //     }
-  //     if (double.parse(AccelerometerList[i][2]) < min) {
-  //       min = double.parse(AccelerometerList[i][2]);
-  //     }
-  //   }
-  //   return min;
-  // }
 
   List<LineChartBarData> linesBarData() {
     List<FlSpot> list0 = [];
     List<FlSpot> list1 = [];
     List<FlSpot> list2 = [];
     setState(() {
-      for (var i = 0; i < AccelerometerList.length; i++) {
-        list0.add(FlSpot(i.toDouble(), double.parse(AccelerometerList[i][0])));
-        list1.add(FlSpot(i.toDouble(), double.parse(AccelerometerList[i][1])));
-        list2.add(FlSpot(i.toDouble(), double.parse(AccelerometerList[i][2])));
+      for (var i = 0; i < OrientationList.length; i++) {
+        list0.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][0])));
+        list1.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][1])));
+        list2.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][2])));
       }
     });
     final LineChartBarData lineChartBarData1 = LineChartBarData(
       spots: list0,
       isCurved: true,
       colors: [
-        const Color(0xff4af699),
+        const Color(0xff93c47d),
       ],
       barWidth: 3,
       isStrokeCapRound: true,
@@ -253,7 +189,7 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
       spots: list1,
       isCurved: true,
       colors: [
-        const Color(0xffaa4cfc),
+        const Color(0xff6fa8dc),
       ],
       barWidth: 3,
       isStrokeCapRound: true,
@@ -269,7 +205,7 @@ class Accelerometer_line_chartState extends State<Accelerometer_line_chart> {
       spots: list2,
       isCurved: true,
       colors: const [
-        Color(0xff27b6fc),
+        Color(0xffF44336),
       ],
       barWidth: 3,
       isStrokeCapRound: true,

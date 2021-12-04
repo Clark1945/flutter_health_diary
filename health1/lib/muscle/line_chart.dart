@@ -1,16 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'muscle.dart';
 import 'dart:async';
 import 'dart:math';
 import 'HomePage.dart';
 
-class HomePage_line_chart extends StatefulWidget {
+class LineChartSample1 extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HomePage_line_chartState();
+  State<StatefulWidget> createState() => LineChartSample1State();
 }
 
-class HomePage_line_chartState extends State<HomePage_line_chart> {
+class LineChartSample1State extends State<LineChartSample1> {
   @override
   void initState() {
     super.initState();
@@ -19,17 +19,15 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.1,
+      aspectRatio: 1.23,
       child: Container(
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(9)),
           gradient: LinearGradient(
             colors: [
-              Colors.white,
-              Colors.white,
-              Colors.white,
-              // Colors.blueGrey,
-              // Colors.black87,
+              Colors.black,
+              Colors.black87,
+              Colors.black54,
             ],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
@@ -41,30 +39,33 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const SizedBox(
-                  height: 15,
+                  height: 37,
                 ),
-                // const Text(
-                //   'Orientation',
-                //   style: TextStyle(
-                //       color: Colors.white,
-                //       fontSize: 20,
-                //       fontWeight: FontWeight.bold,
-                //       letterSpacing: 2),
-                //   textAlign: TextAlign.center,
-                // ),
-                // const SizedBox(
-                //   height:10 ,
-                // ),
+                const SizedBox(
+                  height: 4,
+                ),
+                const Text(
+                  'Orientation',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 37,
+                ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 0.0, left: 0.0),
+                    padding: const EdgeInsets.only(right: 16.0, left: 6.0),
                     child: LineChart(
                       sampleData(),
                     ),
                   ),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
               ],
             ),
@@ -89,59 +90,59 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
       ),
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
-          showTitles: false,
+          showTitles: true,
           reservedSize: 22,
-          getTextStyles: (context,value) => const TextStyle(
+          getTextStyles: (context, value) => const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 15,
+            fontSize: 16,
           ),
           margin: 10,
-          // Text('123');
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 0:
-                return '0';
-              case 50:
-                return '50';
-              case 100:
-                return '100';
+            if (value == 0) {
+              return '0';
+            }
+            if (value == ((OrientationList.length - 1) / 2).toInt()) {
+              var s = ((OrientationList.length - 1) / 2).toInt();
+              return s.toString();
+            }
+            if (value == OrientationList.length - 1) {
+              return (OrientationList.length - 1).toString();
             }
             return '';
           },
         ),
         leftTitles: SideTitles(
-          showTitles: false,
-          getTextStyles: (context,value) => const TextStyle(
-            color: Colors.white70,
+          showTitles: true,
+          getTextStyles: (context, value) => const TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
           getTitles: (value) {
             switch (value.toInt()) {
-              case -180:
-                return '-180\u00B0';
+              case -90:
+                return '-90\u00B0';
               case 0:
                 return '0\u00B0';
-              case 180:
-                return '180\u00B0';
+              case 90:
+                return '90\u00B0';
             }
             return '';
           },
-          margin: 10,
+          margin: 8,
           reservedSize: 30,
         ),
       ),
       borderData: FlBorderData(
-        show: false,
+        show: true,
         border: const Border(
           bottom: BorderSide(
-            color: Colors.white70,
-            width: 1,
+            color: Colors.white,
+            width: 4,
           ),
           left: BorderSide(
-            color: Colors.white70,
-            width: 1,
+            color: Colors.transparent,
           ),
           right: BorderSide(
             color: Colors.transparent,
@@ -152,9 +153,9 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
         ),
       ),
       minX: 0,
-      maxX: 100,
-      maxY: 180,
-      minY: -180,
+      maxX: OrientationList.length.toDouble() - 1,
+      maxY: 90,
+      minY: -90,
       lineBarsData: linesBarData(),
     );
   }
@@ -164,19 +165,20 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
     List<FlSpot> list1 = [];
     List<FlSpot> list2 = [];
     setState(() {
-      for (var i = 0; i < DynamicOrientation.length; i++) {
-        list0.add(FlSpot(i.toDouble(), double.parse(DynamicOrientation[i][0])));
-        list1.add(FlSpot(i.toDouble(), double.parse(DynamicOrientation[i][1])));
-        list2.add(FlSpot(i.toDouble(), double.parse(DynamicOrientation[i][2])));
+      for (var i = 0; i < OrientationList.length; i++) {
+        list0.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][0])));
+        list1.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][1])));
+        list2.add(FlSpot(i.toDouble(), double.parse(OrientationList[i][2])));
       }
     });
+    // List<FlSpot> spots1=list2;
     final LineChartBarData lineChartBarData1 = LineChartBarData(
       spots: list0,
       isCurved: true,
       colors: [
-        const Color(0xff93c47d),
+        const Color(0xff4af699),
       ],
-      barWidth: 3,
+      barWidth: 4,
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: false,
@@ -189,9 +191,9 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
       spots: list1,
       isCurved: true,
       colors: [
-        const Color(0xff6fa8dc),
+        const Color(0xffaa4cfc),
       ],
-      barWidth: 3,
+      barWidth: 4,
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: false,
@@ -205,9 +207,9 @@ class HomePage_line_chartState extends State<HomePage_line_chart> {
       spots: list2,
       isCurved: true,
       colors: const [
-        Color(0xffF44336),
+        Color(0xff27b6fc),
       ],
-      barWidth: 3,
+      barWidth: 4,
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: false,

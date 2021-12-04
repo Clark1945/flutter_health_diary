@@ -31,17 +31,20 @@ class _Muscle_testState extends State<Muscle_test> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Text(
-            'Range of Motion Exercises',
-            style: TextStyle(
-              fontSize: 25.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+        foregroundColor: Colors.black,
+        title: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                right: 10.0,
+              ),
+              child: Image.asset(
+                'assets/muscle.png',
+                height: 25,
+              ),
             ),
-          ),
+            Container(padding: const EdgeInsets.all(8.0), child: Text('肌肉'))
+          ],
         ),
         actions: <Widget>[
           IconButton(
@@ -52,7 +55,7 @@ class _Muscle_testState extends State<Muscle_test> {
             onPressed: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(builder: (context) => new explain()),
+                MaterialPageRoute(builder: (context) => explain()),
               );
             },
           ),
