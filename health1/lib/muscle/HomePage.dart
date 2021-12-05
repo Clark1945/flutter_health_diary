@@ -43,6 +43,7 @@ var od;
 var SportsCount = 0;
 var CountLock = 1;
 var reciprocal;
+var WarningLuck = 1;
 
 class _HomePageState extends State<HomePage> {
   List<double> _accelerometerValues; //?：值為null
@@ -321,25 +322,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // AudioPlayer audioPlayer = AudioPlayer();
-  // play() async {
-  //   int result = await audioPlayer
-  //       .play('https://taira-komori.jpn.org/sound_os/game01/select01.mp3');
-  //   if (result == 1) {
-  //     // success
-  //   }
-  // }
-
-  // AudioPlayer audioPlayer2 = AudioPlayer();
-  // play2() async {
-  //   int result = await audioPlayer2
-  //       .play('https://taira-komori.jpn.org/sound_os/game01/select08.mp3');
-  //   if (result == 1) {
-  //     // success
-  //   }
-  // }
   final player_ding = AudioPlayer();
-  // var duration =player_ding.setAsset('assets/ding.mp3');
   void ding() async {
     await player_ding.setAsset('assets/ding.mp3');
     player_ding.play();
@@ -350,8 +333,6 @@ class _HomePageState extends State<HomePage> {
     await player_warning.setAsset('assets/warning.mp3');
     player_warning.play();
   }
-
-  var asdf = 1;
 
   void AutoStop() {
     // setaudioplayer();
@@ -384,12 +365,12 @@ class _HomePageState extends State<HomePage> {
         if (WarningSound == 1 &&
             _orientationValues[MeasurementModeValue] <= -30 &&
             _orientationValues[MeasurementModeValue] >= -150) {
-          if (asdf == 1) {
+          if (WarningLuck == 1) {
             warning();
-            asdf = 0;
+            WarningLuck = 0;
           }
         } else {
-          asdf = 1;
+          WarningLuck = 1;
         }
       }
 

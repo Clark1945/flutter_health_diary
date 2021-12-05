@@ -10,7 +10,7 @@ import 'weigh.dart';
 import 'stepcount.dart';
 import 'sleeptime.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'TestPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,13 +99,13 @@ class _prefaceState extends State<preface> {
                   //    MaterialPageRoute(builder: (context) => MyApp()));
                   FutureBuilder(
                     future: _fireApp,
-                    builder: (context,snapshot){
-                      if (snapshot.hasError){
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
                         print("You have an error ${snapshot.error.toString()}");
                         return Text("Something went wrong");
-                      }else if (snapshot.hasData){
+                      } else if (snapshot.hasData) {
                         return MyApp();
-                      }else{
+                      } else {
                         return Center(
                           child: CircularProgressIndicator(),
                         );
@@ -673,6 +673,33 @@ class MyApp extends StatelessWidget {
               ),
               padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
             ),
+            // Container(
+            //   child: ElevatedButton(
+            //     child: Text(
+            //       '   測試',
+            //       style: TextStyle(fontSize: 18, color: Colors.black),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(context,
+            //           MaterialPageRoute(builder: (context) => TestPage()));
+            //     },
+            //     style: ButtonStyle(
+            //       backgroundColor:
+            //           MaterialStateProperty.all<Color>(Colors.white),
+            //       foregroundColor: MaterialStateProperty.all(Colors.black),
+            //       elevation: MaterialStateProperty.all(0),
+            //       padding: MaterialStateProperty.all(
+            //           EdgeInsets.fromLTRB(30, 25, 30, 25)),
+            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //         RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5.0),
+            //             side: BorderSide(color: Colors.black12)),
+            //       ),
+            //       alignment: Alignment.centerLeft,
+            //     ),
+            //   ),
+            //   padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
+            // ),
           ],
         ),
       ),

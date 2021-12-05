@@ -6,13 +6,13 @@ class explain extends StatelessWidget {
     return new Scaffold(
         backgroundColor: Colors.white,
         appBar: new AppBar(
-          title: new Text("說明",
+          title: new Text("使用說明",
               style: TextStyle(
                 color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+                // fontWeight: FontWeight.bold,
+                // fontSize: 20,
               )),
-          centerTitle: true,
+          // centerTitle: true,
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
         ),
@@ -58,11 +58,17 @@ class explain extends StatelessWidget {
                   fontSize: 17,
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(0, 5, 0, 50),
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+            ),
+            Container(
+              child: Image.asset(
+                'assets/shoulder_flexion_deltoid_test.jpg',
+              ),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
             ),
             Container(
               child: Text(
-                '關節活動運動 (Range of Motion Exercises)',
+                '二頭肌彎矩測試(Biceps Brachii Test)',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -99,7 +105,13 @@ class explain extends StatelessWidget {
                   fontSize: 17,
                 ),
               ),
-              padding: EdgeInsets.fromLTRB(0, 5, 0, 50),
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+            ),
+            Container(
+              child: Image.asset(
+                'assets/Biceps_Brachii_Test.jpg',
+              ),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
             ),
             Container(
               child: Text(

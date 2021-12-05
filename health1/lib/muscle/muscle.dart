@@ -2,13 +2,10 @@ import 'dart:async';
 import 'dart:math';
 import 'package:sensors/sensors.dart';
 import 'package:flutter/material.dart';
-
 import 'HomePage.dart';
 import 'DataPage.dart';
 import 'Use_Explain.dart';
-// import '../test/ProfilePage.dart';
 import 'CustomPage.dart';
-import 'TestPage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,7 +21,6 @@ class Muscle_test extends StatefulWidget {
 class _Muscle_testState extends State<Muscle_test> {
   int _selectedIndex = 1;
   final pages = [DataPage(), HomePage(), CustomPage()];
-  // final pages = [DataPage(), HomePage(), CustomPage(), TestPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +43,23 @@ class _Muscle_testState extends State<Muscle_test> {
           ],
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.help_outline,
-              color: Colors.black,
-            ),
+          ElevatedButton.icon(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => explain()),
               );
             },
+            icon: const Icon(
+              Icons.help_outline,
+              color: Colors.black54,
+            ),
+            label: Text('使用說明'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              foregroundColor: MaterialStateProperty.all(Colors.black54),
+              elevation: MaterialStateProperty.all(0),
+            ),
           ),
         ],
       ),
@@ -77,10 +79,6 @@ class _Muscle_testState extends State<Muscle_test> {
             icon: Icon(Icons.reorder),
             label: '自訂',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.settings),
-          //   label: '測試',
-          // ),
         ],
         backgroundColor: Colors.white,
         fixedColor: Colors.black,
