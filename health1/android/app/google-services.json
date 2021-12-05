@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "813347606828",
+    "project_id": "ntub-health-diary",
+    "storage_bucket": "ntub-health-diary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813347606828:android:bd935bd5301da3b41f5c89",
+        "android_client_info": {
+          "package_name": "com.example.health1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813347606828-0i7dpcqjphj8u1mcpaeji3uddec76go8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6N4pfs9Jz-WEN0cBTz8HG2uj8mRDQTP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813347606828-0i7dpcqjphj8u1mcpaeji3uddec76go8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

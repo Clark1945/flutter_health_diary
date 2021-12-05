@@ -6,13 +6,15 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'health_score.dart';
 import 'karory.dart';
-import 'muscle.dart';
 import 'weigh.dart';
 import 'stepcount.dart';
 import 'sleeptime.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   await Hive.openBox<int>('steps');
   await Hive.openBox<String>("alldata");
@@ -36,6 +38,7 @@ class preface extends StatefulWidget {
 }
 
 class _prefaceState extends State<preface> {
+  final Future<FirebaseApp> _fireApp = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     // final counter = Provider.of<weight>(context); //應用底層
@@ -92,8 +95,23 @@ class _prefaceState extends State<preface> {
                   } else {
                     Status = "正常";
                   }
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp()));
+                  //Navigator.push(context,
+                  //    MaterialPageRoute(builder: (context) => MyApp()));
+                  FutureBuilder(
+                    future: _fireApp,
+                    builder: (context,snapshot){
+                      if (snapshot.hasError){
+                        print("You have an error ${snapshot.error.toString()}");
+                        return Text("Something went wrong");
+                      }else if (snapshot.hasData){
+                        return MyApp();
+                      }else{
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
+                  );
                 }
               },
               tooltip: "summit",
