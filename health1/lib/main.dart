@@ -3,14 +3,12 @@ import "package:flutter/rendering.dart";
 import 'package:health1/muscle/muscle.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 import 'health_score.dart';
 import 'karory.dart';
 import 'weigh.dart';
 import 'stepcount.dart';
 import 'sleeptime.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'TestPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,12 +77,13 @@ class _prefaceState extends State<preface> {
                     sex.text == "" ||
                     height.text == "" ||
                     weighs.text == "") {
+     Navigator.push(context,
+         MaterialPageRoute(builder: (context) => Msgbox()));
+    }
+                else{
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MyApp()));
                   // print("未輸入完全");
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => Msgbox()));
-                } else {
                   BMI = (double.parse(weighs.text)) /
                       ((double.parse(height.text) / 100) *
                           (double.parse(height.text) / 100));
@@ -418,15 +417,15 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
-                      EdgeInsets.fromLTRB(30, 25, 30, 25)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        side: BorderSide(color: Colors.black12)),
+                  EdgeInsets.fromLTRB(30, 25, 30, 25)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      side: BorderSide(color: Colors.black12)),
                   ),
                   alignment: Alignment.centerLeft,
                 ),
@@ -466,7 +465,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -514,7 +513,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -566,7 +565,7 @@ class MyApp extends StatelessWidget {
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
-                      EdgeInsets.fromLTRB(30, 25, 30, 25)),
+                  EdgeInsets.fromLTRB(30, 25, 30, 25)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -610,7 +609,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -658,7 +657,7 @@ class MyApp extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
+                  MaterialStateProperty.all<Color>(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(
@@ -673,33 +672,6 @@ class MyApp extends StatelessWidget {
               ),
               padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
             ),
-            // Container(
-            //   child: ElevatedButton(
-            //     child: Text(
-            //       '   測試',
-            //       style: TextStyle(fontSize: 18, color: Colors.black),
-            //     ),
-            //     onPressed: () {
-            //       Navigator.push(context,
-            //           MaterialPageRoute(builder: (context) => TestPage()));
-            //     },
-            //     style: ButtonStyle(
-            //       backgroundColor:
-            //           MaterialStateProperty.all<Color>(Colors.white),
-            //       foregroundColor: MaterialStateProperty.all(Colors.black),
-            //       elevation: MaterialStateProperty.all(0),
-            //       padding: MaterialStateProperty.all(
-            //           EdgeInsets.fromLTRB(30, 25, 30, 25)),
-            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            //         RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(5.0),
-            //             side: BorderSide(color: Colors.black12)),
-            //       ),
-            //       alignment: Alignment.centerLeft,
-            //     ),
-            //   ),
-            //   padding: EdgeInsets.fromLTRB(15, 5, 15, 15),
-            // ),
           ],
         ),
       ),

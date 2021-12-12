@@ -8,7 +8,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:health1/main.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -20,32 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter DateTimePicker Demo',
         home: weight(),
-        localizationsDelegates: [
-          GlobalWidgetsLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale.fromSubtags(languageCode: 'zh'), // generic Chinese 'zh'
-          Locale.fromSubtags(
-              languageCode: 'zh',
-              scriptCode: 'Hans'), // generic simplified Chinese 'zh_Hans'
-          Locale.fromSubtags(
-              languageCode: 'zh',
-              scriptCode: 'Hant'), // generic traditional Chinese 'zh_Hant'
-          Locale.fromSubtags(
-              languageCode: 'zh',
-              scriptCode: 'Hans',
-              countryCode: 'CN'), // 'zh_Hans_CN'
-          Locale.fromSubtags(
-              languageCode: 'zh',
-              scriptCode: 'Hant',
-              countryCode: 'TW'), // 'zh_Hant_TW'
-          Locale.fromSubtags(
-              languageCode: 'zh',
-              scriptCode: 'Hant',
-              countryCode: 'HK'), // 'zh_Hant_HK'], //, Locale('pt', 'BR')],
-        ]);
+        );
   }
 }
 
@@ -339,9 +313,9 @@ class weightState extends State<weight> {
                     LineSeries<Person, String>(
                         // name: '體重', //改變標籤名稱
                         dataSource: _chartData,
+                        sortingOrder: SortingOrder.ascending,
                         xValueMapper: (Person sales, _) => sales.years, //X軸的資料
-                        yValueMapper: (Person sales, _) =>
-                            double.parse(sales.kgwieghts), //Y軸的資料
+                        yValueMapper: (Person sales, _) => double.parse(sales.kgwieghts), //Y軸的資料
                         dataLabelSettings:
                             DataLabelSettings(isVisible: false), //取消在圖表上顯示
                         enableTooltip: true //final enable tooltip
@@ -363,7 +337,11 @@ class weightState extends State<weight> {
     for (var key in weight_box.keys) {
       chartData.insert(0, Person(key, weight_box.get(key).toString()));
     }
-    return chartData;
+    List<Person> rechart = new List(chartData.length);
+    for(var i=0;i<chartData.length;i++){
+      rechart[i] = chartData[rechart.length-1-i];
+    }
+    return rechart;
   }
 }
 

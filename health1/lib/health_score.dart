@@ -85,7 +85,7 @@ class _health_scoreState extends State<health_score> {
                 status = "減少過多，需多加留意";
               });
             }
-          }, child: Text("XX")),
+          }, child: Text("判斷")),
           Text("體重狀態：${status}"),
         ],)
     );
