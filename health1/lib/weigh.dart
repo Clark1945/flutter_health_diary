@@ -31,6 +31,7 @@ class weight extends StatefulWidget {
 }
 
 class weightState extends State<weight> {
+
   Box<String> weight_box = Hive.box('alldata');
   final List<String> names = <String>[]; //預先加入的資料集
   TextEditingController nameController = TextEditingController(); //擷取文字用
@@ -337,9 +338,9 @@ class weightState extends State<weight> {
     for (var key in weight_box.keys) {
       chartData.insert(0, Person(key, weight_box.get(key).toString()));
     }
-    List<Person> rechart = new List(chartData.length);
+    List<Person> rechart = [];
     for(var i=0;i<chartData.length;i++){
-      rechart[i] = chartData[rechart.length-1-i];
+      rechart.insert(i, chartData[chartData.length-1-i]);
     }
     return rechart;
   }

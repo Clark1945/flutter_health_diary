@@ -258,9 +258,9 @@ class sleeptimeState extends State<sleeptime> {
     for (var key in sleeptime_box.keys) {
       chartData.insert(0, Person(key, sleeptime_box.get(key).toString()));
     }
-    List<Person> rechart = new List(chartData.length);
+    List<Person> rechart = [];
     for(var i=0;i<chartData.length;i++){
-      rechart[i] = chartData[rechart.length-1-i];
+      rechart.insert(i, chartData[chartData.length-1-i]);
     }
     return rechart;
   }

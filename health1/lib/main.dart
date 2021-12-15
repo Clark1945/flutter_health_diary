@@ -72,15 +72,15 @@ class _prefaceState extends State<preface> {
                 color: Colors.blue,
               ),
               onPressed: () {
-                if (age.text == "" ||
-                    name.text == "" ||
-                    sex.text == "" ||
-                    height.text == "" ||
-                    weighs.text == "") {
-     Navigator.push(context,
-         MaterialPageRoute(builder: (context) => Msgbox()));
-    }
-                else{
+//                if (age.text == "" ||
+//                    name.text == "" ||
+//                    sex.text == "" ||
+//                    height.text == "" ||
+//                    weighs.text == "") {
+//     Navigator.push(context,
+//         MaterialPageRoute(builder: (context) => Msgbox()));
+//    }
+//                else{
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MyApp()));
                   // print("未輸入完全");
@@ -111,8 +111,7 @@ class _prefaceState extends State<preface> {
                       }
                     },
                   );
-                }
-              },
+                },
               tooltip: "summit",
             ),
           ],
